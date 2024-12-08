@@ -9,7 +9,7 @@ const Cart = () => {
             <Headersection text="Cart" tittle="Cart" />
             <div className='flex flex-col sm:flex-row max-w-screen-sm items:center justify-center sm:justify-around'>
 
-                <div className=' sm:w-6/12 mt-5'>
+                <div className='max-w-md sm:w-full mt-5'>
                     {/* leftside */}
                     <div className='bg-[#FFF9E5] flex justify-around text-xl font-semibold gap-3 max-w-screen-full'>
                         <h2>Product</h2>
@@ -26,7 +26,7 @@ const Cart = () => {
                       <h2 className='mt-5 px-14 text-[#9F9F9F]'>Rs. 250,000,00</h2>
                     <h2 className='border rounded-lg border-black text-lg px-4'>1</h2>
                    <div className='space-x-5 flex'>
-                   <h2 className='mt-5 px-14 font-bold'>Rs. 250,000,00</h2>
+                   <h2 className='mt-5 hidden sm:block px-14 font-bold'>Rs. 250,000,00</h2>
                    <Trash2 className='text-[#FBEBB9] text-xl '/>
                    </div>
                     </div>
