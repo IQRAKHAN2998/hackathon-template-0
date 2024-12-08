@@ -27,14 +27,14 @@ const Cart = () => {
                     <h2 className='border rounded-lg border-black text-lg px-4'>1</h2>
                    <div className='space-x-5 flex'>
                    <h2 className='mt-5 hidden sm:block px-14 font-bold'>Rs. 250,000,00</h2>
-                   <Trash2 className='text-[#FBEBB9] text-xl '/>
+                   <Trash2 className='text-[#FBEBB9] text-xl hidden sm:block'/>
                    </div>
                     </div>
                     
                     </div> 
 
                 </div>
-                <div className='bg-[#FFF9E5] mt-10 py-7 sm:px-24 text-center h-auto max-w-screen-md mx-28 text-xl font-semibold'>
+                <div className='bg-[#FFF9E5] mt-10 py-7 sm:px-24 text-center h-auto max-w-screen-md mx-auto text-xl font-semibold'>
                     {/* rightside */}
                     <h2 className='text-2xl font-bold'>Cart Totals</h2>
                    <div className='flex justify-center gap-7 py-7 items-center'>
