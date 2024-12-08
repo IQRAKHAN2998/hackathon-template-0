@@ -35,6 +35,7 @@ export default function Header() {
                                     <Link href="/" className=" hover:bg-yellow-50   shadow-lg px-6 py-3">Home</Link>
                                     <Link href="/about" className=" hover:bg-yellow-50   shadow-lg px-6 py-3">About</Link>
                                     <Link href="/shop" className=" hover:bg-yellow-50   shadow-lg px-6 py-3">Shop</Link>
+                                    <Link href="/blog" className=" hover:bg-yellow-50   shadow-lg px-6 py-3">Blog</Link>
                                     <Link href="/contact" className=" hover:bg-yellow-50   shadow-lg px-6 py-3">Contact</Link>
 
                                 </li>
