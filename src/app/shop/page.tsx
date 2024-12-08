@@ -8,7 +8,7 @@ import CartStyle from '../shared/cartstyle'
 const sofadesisgn = [
     {
         slug: "trent",
-        image: "/trenton modular.png",
+        image: "/Trenton modular.png",
         description: "Trenton modular sofa_3",
         rupees: "Rs. 250,000.00"
     }, {
@@ -38,7 +38,7 @@ const sofadesisgn = [
         rupees: "Rs. 250,000.00"
     }, {
         slug: "rond",
-        image: "/trenton modular.png",
+        image: "/Outdoor sofa set 1.png.png",
         description: "Round coffee table_color 2",
         rupees: "Rs. 251,000.00"
     }, {
@@ -58,7 +58,7 @@ const sofadesisgn = [
         rupees: "Rs. 258,000.00"
     }, {
         slug: "sjp",
-        image: "/trenton modular.png",
+        image: "/Outdoor sofa set 1.png.png",
         description: "SJP_0825 ",
         rupees: "Rs. 20,000.00"
     }, {
@@ -100,7 +100,7 @@ const Shop = () => {
                 <div className='flex space-x-6 font-semibold items-center'>
                     <h2 className='flex'>  <SlidersHorizontal />Filter</h2>
                     <LayoutGrid className='hidden' />
-                    <Image src="/vector.png" alt="logo" width={20} height={20}></Image>
+                    <Image src="/Vector.png" alt="logo" width={20} height={20}></Image>
                     <Image src="/Line 5.png" alt="line" width={3} height={1} className='text-gray-800'></Image>
                     <h2 className='hidden sm:block'>Showing 1-16 of 132 results</h2>
                 </div>
@@ -115,14 +115,14 @@ const Shop = () => {
                         className="mt-1 block border py-1 rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                     />
 
-                    <label htmlFor="name" className=" mt-4 block text-md font-semibold text-gray-800 ">
+                    <label htmlFor="name" className="hidden sm:block mt-4  text-md font-semibold text-gray-800 ">
                         Short by
                     </label>
                     <input
                         type="text"
                         id="name"
                         placeholder=" default"
-                        className="mt-1 block border py-1 rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                        className="mt-1 hidden sm:block border py-1 rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                     />
                 </div>
             </div>

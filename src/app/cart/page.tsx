@@ -7,7 +7,7 @@ const Cart = () => {
     return (
         <>
             <Headersection text="Cart" tittle="Cart" />
-            <div className='flex flex-col sm:flex-row items:center justify-center sm:justify-around'>
+            <div className='flex flex-col sm:flex-row max-w-screen-sm items:center justify-center sm:justify-around'>
 
                 <div className=' sm:w-6/12 mt-5'>
                     {/* leftside */}
@@ -34,7 +34,7 @@ const Cart = () => {
                     </div> 
 
                 </div>
-                <div className='bg-[#FFF9E5] mt-10 py-7 sm:px-24 text-center h-auto mx-28 text-xl font-semibold'>
+                <div className='bg-[#FFF9E5] mt-10 py-7 sm:px-24 text-center h-auto max-w-screen-md mx-28 text-xl font-semibold'>
                     {/* rightside */}
                     <h2 className='text-2xl font-bold'>Cart Totals</h2>
                    <div className='flex justify-center gap-7 py-7 items-center'>
