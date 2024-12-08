@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Heart, Menu, Search, ShoppingCart, UserRoundX } from "lucide-react"
 import {
     Sheet,
-    SheetClose,
     SheetContent,
     SheetDescription,
     SheetHeader,

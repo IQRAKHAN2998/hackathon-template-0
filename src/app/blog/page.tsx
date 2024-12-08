@@ -1,6 +1,7 @@
 import React from 'react'
 import { Headersection } from '../layout/headersection'
 import Button from '../shared/button'
+import Image from 'next/image'
 const para = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
  incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer malesuada nunc.`
 
@@ -34,7 +35,7 @@ const Blog = () => {
 
                     {blog.map((item, index) => (
                         <div key={index} className="blog-item">
-                            <img src={item.Image} alt={item.Description} />
+                            <Image src={item.Image} alt={item.Description} />
                             <h2 className='font-bold mt-5'>{item.Description}</h2>
                             <p className='whitespace-pre-line space-y-1 mt-5'>{para}</p>
                             <Button text="Read more" />
