@@ -31,11 +31,11 @@ const Blog = () => {
             {/* <div className=' sm:flex-row mt-10  '> */}
                 {/* leftside */}
 
-                <div className='flex flex-col items-center justify-center '>
+                <div className='flex flex-col items-center py-10  justify-center '>
 
                     {blog.map((item, index) => (
-                        <div key={index} className="blog-item">
-                            <Image src={item.Image} alt={item.Description} />
+                        <div key={index} className="blog-item py-5">
+                            <Image src={item.Image} alt={item.Description} width={200} height={200}/>
                             <h2 className='font-bold mt-5'>{item.Description}</h2>
                             <p className='whitespace-pre-line space-y-1 mt-5'>{para}</p>
                             <Button text="Read more" />
