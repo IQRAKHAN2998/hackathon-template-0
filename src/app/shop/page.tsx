@@ -38,7 +38,7 @@ const sofadesisgn = [
         rupees: "Rs. 250,000.00"
     }, {
         slug: "rond",
-        image: "/Outdoor sofa set 1.png.png",
+        image: "/Outdoor sofa set 1.png",
         description: "Round coffee table_color 2",
         rupees: "Rs. 251,000.00"
     }, {
@@ -58,7 +58,7 @@ const sofadesisgn = [
         rupees: "Rs. 258,000.00"
     }, {
         slug: "sjp",
-        image: "/Outdoor sofa set 1.png.png",
+        image: "/Outdoor sofa set 1.png",
         description: "SJP_0825 ",
         rupees: "Rs. 20,000.00"
     }, {

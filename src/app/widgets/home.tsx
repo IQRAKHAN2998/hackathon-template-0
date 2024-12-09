@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from '../shared/button'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Home = () => {
     const seater = `Rocket Single \n Seater`
@@ -10,7 +11,7 @@ const Home = () => {
                 <div className='mt-16 ml-10 sm:mt-10 sm:ml-52 text-7xl  font-semibold'>
                     {/* right side */}
                     <h1 className='whitespace-pre-line pt-2 '>{seater}</h1>
-                    <p className='font-bold'><Button text='Shop Now' /></p>
+                    <Link href="/shop" className='font-bold'><Button text='Shop Now' /></Link>
                 </div>
                 <div className=' '>
                     {/* left side */}
@@ -22,7 +23,7 @@ const Home = () => {
                 {/* left side */}
                 <div className='flex items-center '>
                     <div className=' sm:mt-36 sm:ml-48  '>
-                        <h2 className='font-bold text-xl sm:text-2xl '>Side table</h2>
+                        <h2 className='font-bold text-lg sm:text-2xl '>Side table</h2>
                         <Button text="view More" />
                     </div>
                     <Image src="/sidetable 1.png" alt='sidetable' width={500} height={500} ></Image>

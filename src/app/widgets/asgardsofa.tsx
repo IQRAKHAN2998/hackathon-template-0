@@ -54,13 +54,13 @@ export const AsgardSofa = () => {
                 <Button text="View All Post" />
             </div>
 
-            <div className=' relative w-full mt-10'>
+            <div className=' relative max-w-full mt-10'>
 
-                <Image src="/Rectangle 17.png" alt="bgpics" width={1900} height={500}></Image>
-                <div className=' space-y-5 absolute inset-0 justify-center items-center flex flex-col'>
-                    <h2 className='font-bold text-4xl'>Our Instagram</h2>
-                    <h3 className='font-semibold'>Follow our store on Instagram</h3>
-                    <button className='border py-4 px-12 rounded-full font-semibold shadow-xl'>follow us</button>
+                <Image src="/Rectangle 17.png" alt="bgpics" width={1900} height={500} className='max-w-lg h-auto'></Image>
+                <div className='space-y-2 sm:space-y-5 text:2xl absolute inset-0 justify-center items-center flex flex-col'>
+                    <h2 className='font-bold  sm:text-4xl'>Our Instagram</h2>
+                    <h3 className='font-semibold '>Follow our store on Instagram</h3>
+                    <button className='border sm:py-4 px-12 rounded-full font-semibold shadow-xl'>follow us</button>
                 </div>
             </div>
         </section>
