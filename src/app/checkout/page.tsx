@@ -70,7 +70,7 @@ const BillingDetails = () => {
           </form>
         </div>
 
-        {/* Right Product Section */}
+        {/* Right side */}
         <div className="bg-gray-50 border border-gray-300 rounded-lg p-5">
           <h2 className="text-lg font-bold mb-4">Product</h2>
           <div className="flex justify-between mb-2">

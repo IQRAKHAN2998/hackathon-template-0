@@ -19,9 +19,9 @@ export default function Contact() {
         </p>
       </div>
 
-      {/* Main Content */}
+      
       <div className="max-w-6xl w-full grid grid-cols-1 sm:grid-cols-2 gap-8">
-        {/* Left Section */}
+        {/* Left Side */}
         <div className="space-y-6">
           {/* Address */}
           <div className="flex items-start space-x-4">
@@ -53,7 +53,7 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Right Section - Contact Form */}
+        {/* Right Side - Contact Form */}
         <div>
           <form className="bg-white shadow-md rounded-lg p-6 space-y-4">
             <div>
