@@ -1,8 +1,17 @@
 "use client"
-import { LayoutGrid, SlidersHorizontal } from 'lucide-react'
+import { LayoutGrid, Menu, ShoppingBag, SlidersHorizontal } from 'lucide-react'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import CartStyle from '../shared/cartstyle'
+import {
+    Sheet,
+    SheetContent,
+    SheetDescription,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from "@/components/ui/sheet"
+import Link from 'next/link'
 
 
 const sofadesisgn = [
@@ -96,16 +105,18 @@ const Shop = () => {
     console.log(selecteditemdata)
     return (
         <div>
-            <div className='flex py-3 bg-[#9F9F9F] justify-around items-center'>
-                <div className='flex space-x-6 font-semibold items-center'>
-                    <h2 className='flex'>  <SlidersHorizontal />Filter</h2>
-                    <LayoutGrid className='hidden' />
+            <div className='flex py-3 bg-[#9F9F9F] justify-around items-center '>
+                <div className='flex space-x-6 font-semibold items-center '>
+                   <ul className='hidden sm:block'>
+                    <li>
+                     <h2 className='flex'>  <SlidersHorizontal />Filter</h2>
+                    <LayoutGrid className='' />
                     <Image src="/Vector.png" alt="logo" width={20} height={20}></Image>
                     <Image src="/Line 5.png" alt="line" width={3} height={1} className='text-gray-800'></Image>
-                    <h2 className='hidden sm:block'>Showing 1-16 of 132 results</h2>
-                </div>
-                <div className='flex space-x-4'>
-                    <label htmlFor="name" className="hidden sm:block mt-4 text-md font-semibold text-gray-800 ">
+                    <h2 className=' sm:block'>Showing 1-16 of 132 results</h2>
+                </li>
+                <li className='flex space-x-4'>
+                    <label htmlFor="name" className=" sm:block mt-4 text-md font-semibold text-gray-800 ">
                         Show
                     </label>
                     <input
@@ -115,16 +126,64 @@ const Shop = () => {
                         className="mt-1 block border py-1 rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                     />
 
-                    <label htmlFor="name" className="hidden sm:block mt-4  text-md font-semibold text-gray-800 ">
+                    <label htmlFor="name" className=" sm:block mt-4  text-md font-semibold text-gray-800 ">
                         Short by
                     </label>
                     <input
                         type="text"
                         id="name"
                         placeholder=" default"
-                        className="mt-1 hidden sm:block border py-1 rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                    />
+                        className="mt-1 sm:block border py-1 rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                    />    
+                    </li>
+                   </ul>
+                   
                 </div>
+                
+            <div>
+                <Sheet>
+                    <SheetTrigger className="md:hidden">
+                        <ShoppingBag />
+                    </SheetTrigger>
+                    <SheetContent>
+                        <SheetHeader>
+                            <ul className="bg-white flex flex-col font-medium">
+                                <li className="space-x-5  flex space-y-12 items-start flex-col">
+                                    <Link href="/" className=" hover:bg-yellow-50   shadow-lg px-6 py-3">Filter</Link>
+                                    <Link href="/about" className=" hover:bg-yellow-50   shadow-lg px-6 py-3">Showing 1-16 of 132 results</Link>
+                                    <Link href="/shop" className=" hover:bg-yellow-50   shadow-lg px-6 py-3">                <div className='flex space-x-4'>
+                                        <label htmlFor="name" className=" sm:block mt-4 text-md font-semibold text-gray-800 ">
+                                            Show
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="name"
+                                            placeholder="16"
+                                            className="mt-1 block border py-1 rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                        />
+
+
+                                    </div></Link>
+                                    <Link href="/about" className=" hover:bg-yellow-50   shadow-lg px-6 py-3">  <label htmlFor="name" className=" sm:block mt-4  text-md font-semibold text-gray-800 ">
+                                        Short by
+                                    </label>
+                                        <input
+                                            type="text"
+                                            id="name"
+                                            placeholder=" default"
+                                            className="mt-1 sm:block border py-1 rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                        /></Link>
+
+
+                                </li>
+                            </ul>
+                            <SheetDescription>
+
+                            </SheetDescription>
+                        </SheetHeader>
+                    </SheetContent>
+                </Sheet>
+            </div>
             </div>
 
             <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
