@@ -1,5 +1,5 @@
 "use client"
-import { LayoutGrid, Menu, ShoppingBag, SlidersHorizontal } from 'lucide-react'
+import { LayoutGrid,  ShoppingBag, SlidersHorizontal } from 'lucide-react'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import CartStyle from '../shared/cartstyle'
@@ -8,7 +8,6 @@ import {
     SheetContent,
     SheetDescription,
     SheetHeader,
-    SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
 import Link from 'next/link'
