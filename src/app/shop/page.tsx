@@ -1,6 +1,5 @@
 "use client"
 import { LayoutGrid, ShoppingBag, SlidersHorizontal } from 'lucide-react'
-import Image from 'next/image'
 import React, { useState } from 'react'
 import CartStyle from '../shared/cartstyle'
 import {
@@ -110,7 +109,6 @@ const Shop = () => {
                         <li className='flex flex-row  gap-12'>
                             <h2 className='flex flex-row'>  <SlidersHorizontal />Filter</h2>
                             <LayoutGrid  />
-                            {/* <Image src="/Vector.png" alt="logo" width={20} height={20}></Image> */}
                             <h2 className=' sm:block'>Showing 1-16 of 132 results</h2>
                        
                             <label htmlFor="name" className=" sm:block mt-4 text-md font-semibold text-gray-800 ">
