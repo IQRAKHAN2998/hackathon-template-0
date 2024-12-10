@@ -27,7 +27,7 @@ const Cart = () => {
                             <h2 className='border rounded-lg border-black text-lg px-4'>1</h2>
                             <div className='space-x-5 flex'>
                                 <h2 className='mt-5 hidden sm:block px-14 font-bold'>Rs. 250,000,00</h2>
-                                <Trash2 className='text-[#FBEBB9] text-xl sm:block' />
+                                <Trash2 className='text-[#FBEBB9] text-xl hidden sm:block' />
                             </div>
                         </div>
 
