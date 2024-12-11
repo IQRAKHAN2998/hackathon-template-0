@@ -17,23 +17,23 @@ interface Blog {
 }
 const shortimg =
     [
-        {
+        {id : 1,
             simage: "/Rectangle 69 (1).png",
             description:"Going all-in with millennial design"
         },
-        {
+        {id : 2,
             simage: "/Rectangle 69 (2).png",
             description:"Exploring new ways of decorating"
         },
-        {
+        {id : 3,
             simage: "/Rectangle 69 (3).png",
             description:"Handmade pieces that took time to make"
         },
-        {
+        {id : 4,
             simage: "/Rectangle 69 (4).png",
             description:"Modern home in Milan"
         },
-        {
+        {id : 5,
             simage: "/Rectangle 69.png",
             description:"Colorful office redesign"
         },
@@ -111,7 +111,7 @@ const Blog = () => {
                                 {
                                     shortimg.map((item, id) => {
                                         return (
-                                            <div key="id" className='flex justify-center items-center space-x-5'>
+                                            <div key={id} className='flex justify-center items-center space-x-5'>
                                                 <Image src={item.simage} alt="sortimg" width={80} height={80} className=' my-10'></Image>
                                                 <h2>{item.description}</h2>
 
