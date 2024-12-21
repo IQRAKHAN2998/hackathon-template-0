@@ -11,35 +11,41 @@ interface Params {
         slug: string
     }
 }
+interface Isofa {
+    slug: string,
+    image: string ,
+    description: string,
+    rupees: string
+}
 
-const slugpage = ({ params }: Params) => {
+const SlugPage = ({ params }: Params) => {
 
     const [quantity, setquantity] = useState(1)
-    const [sofadesings, setsofadesign] = useState<any>(null)
-    const [cart, setCart] = useState<any[]>([])
+    const [sofadesings, setsofadesign] = useState<Isofa>()
+    // const [cart, setCart] = useState<any[]>([])
 
 
     
     const increment = () => setquantity(quantity + 1)
     const decremnet = () => setquantity(quantity > 1 ? quantity - 1 : 1)
     
-    const addToCart = () => {
-        if (sofadesings) {
-          const item = {
-            id: sofadesings.id,
-            name: sofadesings.description,
-            image: sofadesings.image,
-            price: sofadesings.rupees,
-            quantity,
-          };
-          setCart((prevCart:any) => [...prevCart, item]);
-          alert("Product added to cart!");
-        }
-      };
+    // const addToCart = () => {
+    //     if (cart) {
+    //       const item = {
+    //         id: sofadesings.id,
+    //         name: sofadesings.description,
+    //         image: sofadesings.image,
+    //         price: cart.rupees,
+    //         quantity,
+    //       };
+    //       setCart((prevCart) => [...prevCart, item]);
+    //       alert("Product added to cart!");
+    //     }
+    //   };
 
 
     useEffect(() => {
-    const fetchdata = async()=>{
+    const fetchdata = async ()=>{
     const {slug} = await params
     
     const designs = sofaDesisgn.find((item) => item.slug === slug)
@@ -98,7 +104,8 @@ fetchdata()
                         <button onClick={increment}>+</button>
                         </span>
                         <span className='border hover:scale-105 hover:bg-slate-200 border-black rounded-md px-7'>
-                        <button onClick={addToCart} >Add to Cart</button>
+                        <button >Add to Cart</button>
+                        
                         </span>
                     </div>
                 </span>
@@ -109,4 +116,4 @@ fetchdata()
     )
 }
 
-export default slugpage
+export default SlugPage

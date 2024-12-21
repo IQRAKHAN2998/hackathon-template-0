@@ -1,6 +1,5 @@
 "use client"
 import { LayoutGrid, ShoppingBag, SlidersHorizontal } from 'lucide-react'
-import React, { useState } from 'react'
 import CartStyle from '../shared/cartstyle'
 import Link from 'next/link'
 import { sofaDesisgn } from './sofas'
