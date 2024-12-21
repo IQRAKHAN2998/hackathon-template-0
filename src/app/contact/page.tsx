@@ -63,7 +63,7 @@ export default function Contact() {
               <input
                 type="text"
                 id="name"
-                placeholder="Abc"
+                placeholder="your name"
                 className="mt-1 block w-full border py-3 rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
               />
             </div>
@@ -77,7 +77,7 @@ export default function Contact() {
               <input
                 type="email"
                 id="email"
-                placeholder="Abc@def.com"
+                placeholder="Email@123.com"
                 className="mt-1 block w-full rounded-md border py-3 border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
               />
             </div>

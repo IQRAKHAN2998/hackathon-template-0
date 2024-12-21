@@ -10,32 +10,44 @@ const para = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ei
     in. Cursus mattis molestie a iaculis at erat. Nibh cras pulvinar mattis nunc sed blandit libero. Pellentesque
      elit ullamcorper dignissim cras tincidunt. Pharetra et ultrices neque ornare aenean euismod elementum`
 
+
+interface Ishortimg {
+    id: string,
+    simage: string,
+    description: string
+}
 interface Blog {
+    id: string
     Image: string,
     Description: string,
     simage?: string
 }
-const shortimg =
+const shortimg: Ishortimg[] =
     [
-        {id : 1,
+        {
+            id: "11",
             simage: "/Rectangle 69 (1).png",
-            description:"Going all-in with millennial design"
+            description: "Going all-in with millennial design"
         },
-        {id : 2,
+        {
+            id: "12",
             simage: "/Rectangle 69 (2).png",
-            description:"Exploring new ways of decorating"
+            description: "Exploring new ways of decorating"
         },
-        {id : 3,
+        {
+            id: "13",
             simage: "/Rectangle 69 (3).png",
-            description:"Handmade pieces that took time to make"
+            description: "Handmade pieces that took time to make"
         },
-        {id : 4,
+        {
+            id: "14",
             simage: "/Rectangle 69 (4).png",
-            description:"Modern home in Milan"
+            description: "Modern home in Milan"
         },
-        {id : 5,
+        {
+            id: "15",
             simage: "/Rectangle 69.png",
-            description:"Colorful office redesign"
+            description: "Colorful office redesign"
         },
     ]
 
@@ -43,15 +55,18 @@ const shortimg =
 
 const blog: Blog[] = [
     {
+        id: "16",
         Image: "/Rectangle 14.png",
         Description: "Going all-in with millennial design",
 
     },
     {
+        id: "17",
         Image: "/Rectangle 15.png",
         Description: "Going all-in with millennial design",
 
     }, {
+        id: "18",
         Image: "/Rectangle 14.png",
         Description: "Going all-in with millennial design",
 
@@ -64,13 +79,13 @@ const Blog = () => {
         <><div>
             <Headersection text="Blog" tittle="Blog" />
         </div >
-            <div className='flex justify-around sm:mx-40 flex-col mt-10  sm:flex-row '>
+            <div className='flex justify-around sm:mx-40 flex-col mt-10  sm:flex-row space-x-5 '>
                 {/* leftside */}
 
                 <div className='flex flex-col py-10  '>
 
-                    {blog.map((item, index) => (
-                        <div key={index} className="blog-item py-5">
+                    {blog.map((item) => (
+                        <div key="id" className="blog-item py-5">
                             <Image src={item.Image} alt={item.Description} width={750} height={200} />
                             <h2 className='font-bold mt-5'>{item.Description}</h2>
                             <p className='whitespace-pre-line space-y-1 mt-5'>{para}</p>
@@ -109,9 +124,9 @@ const Blog = () => {
                         <ul className='flex'>
                             <li >
                                 {
-                                    shortimg.map((item, id) => {
+                                    shortimg.map((item) => {
                                         return (
-                                            <div key={id} className='flex justify-center items-center space-x-5'>
+                                            <div key="id" className='flex justify-center items-center space-x-5'>
                                                 <Image src={item.simage} alt="sortimg" width={80} height={80} className=' my-10'></Image>
                                                 <h2>{item.description}</h2>
 

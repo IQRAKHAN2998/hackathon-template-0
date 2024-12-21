@@ -2,6 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import Button from '../shared/button'
 import { Calendar, Clock } from 'lucide-react'
+import Link from 'next/link'
 
 
 const blogdesign = [{
@@ -37,7 +38,7 @@ export const AsgardSofa = () => {
                 {
                     blogdesign.map((item) => {
                         return (
-                            <div key="i" className='space-y-5 text-center mt-14'>
+                            <div key="id" className='space-y-5 text-center mt-14'>
                                 <Image src={item.image} alt='blogimg' width={300} height={300}></Image>
                                 <h2>Going all-in with millennial design</h2>
                                 <Button text="Read more" />
@@ -51,7 +52,7 @@ export const AsgardSofa = () => {
                 }
             </div>
             <div className='text-center mt-10'>
-                <Button text="View All Post" />
+                <Link href="/blog"><Button text="View All Post" /></Link>
             </div>
 
             <div className=' relative max-w-screen-2xl mx-auto mt-10'>

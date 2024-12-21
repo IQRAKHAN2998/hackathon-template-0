@@ -48,7 +48,6 @@ const Cart = () => {
                     <div > <button className='border border-black py-4 px-12 rounded-md font-semibold '>Check Out</button></div>
 
 
-
                 </div>
             </div>
 

@@ -19,25 +19,25 @@ const Home = () => {
                 </div>
             </div>
             {/* mid part */}
-            <div className='flex flex-col pt-16 sm:flex-row bg-[#FAF4F4] justify-items-center sm:max-w-screen-3xl min-w-full h-auto'>
+            <div className='flex  pt-16 md:flex-row bg-[#FAF4F4] flex-col max-w-screen-3xl  h-auto'>
                 {/* left side */}
-                <div className='flex items-center '>
+                <div className='flex items-center'>
                     <div className=' sm:mt-36 sm:ml-48  '>
-                        <h2 className='font-bold text-lg sm:text-2xl '>Side table</h2>
+                        <h2 className='font-bold text-lg sm:text-2xl '>Side_table</h2>
                         <Button text="view More" />
                     </div>
-                    <Image src="/sidetable 1.png" alt='sidetable' width={500} height={500} ></Image>
+                    <Image src="/sidetable 1.png" alt='sidetable' width={400} height={400} ></Image>
 
                 </div>
 
                 {/* right side */}
                 <div className='flex items-center  '>
                     <div className='sm:mt-36 sm:ml-48'>
-                        <h2 className='font-bold text-xl sm:text-2xl '>Side table</h2>
+                        <h2 className='font-bold text-xl sm:text-2xl '>Side_table</h2>
                         <Button text="view More" />
                     </div>
                    
-                    <Image src="/cloudsofa.png" alt='sidetable' width={500} height={500}></Image>
+                    <Image src="/cloudsofa.png" alt='sidetable' width={400} height={400}></Image>
                 </div>
             </div>
 

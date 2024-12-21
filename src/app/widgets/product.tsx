@@ -1,6 +1,7 @@
 import React from 'react'
 import CartStyle from '../shared/cartstyle'
 import Button from '../shared/button'
+import Link from 'next/link'
 interface productStyle {
     id: string,
     image: string
@@ -9,25 +10,25 @@ interface productStyle {
 }
 const product: productStyle[] = [
     {
-        id: "1",
+        id: "1o",
         image: "/Trenton modular.png",
         description: "treton moduler Sofa Three",
         rupees: "25000.00"
     },
     {
-        id: "2",
+        id: "20",
         image: "/Granitedining.png",
         description: "Granite dining table with dining chair",
         rupees: "25000.00"
     },
     {
-        id: "3",
+        id: "30",
         image: "/Outdoorbar.png",
         description: "Outdoor bar table and stool",
         rupees: "25000.00"
     },
     {
-        id: "4",
+        id: "40",
         image: "/Plainconsole.png",
         description: "Plain console with teak mirror",
         rupees: "25000.00"
@@ -58,7 +59,7 @@ const Products = () => {
             </div>
 
             <div className=' flex justify-center mt-10 font-bold items-center'>
-                <Button text="View More" />
+               <Link href="/shop"><Button text="View More" /></Link> 
             </div>
         </section>
     )

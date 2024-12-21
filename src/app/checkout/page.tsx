@@ -2,6 +2,7 @@ import React from 'react';
 import { Headersection } from '../layout/headersection';
 
 const BillingDetails = () => {
+  
   return (
    <> <Headersection text="Checkout" tittle='Check Out'/>
     <div className="max-w-screen-xl mx-auto py-10 px-5">
@@ -98,7 +99,8 @@ const BillingDetails = () => {
           <p className="text-sm text-gray-600 mb-4">
             Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.
           </p>
-          <button className="w-full py-3 bg-white border border-gray-300 rounded-md text-center font-bold hover:bg-gray-100">
+          
+          <button  className="w-full py-3 bg-white border border-gray-300 rounded-md text-center font-bold hover:bg-gray-100">
             Place order
           </button>
         </div>
