@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <section>
             <div className='bg-[#FBEBB5] flex items-center justify-center flex-col  sm:flex-row sm:max-w-screen-3xl max-w-full max-h-screen '>
-                <div className='mt-16 ml-10 sm:mt-10 sm:ml-52 text-7xl  font-semibold'>
+                <div className='mt-16 mb-7 ml-10 sm:mt-10 sm:ml-52 text-7xl  font-semibold'>
                     {/* right side */}
                     <h1 className='whitespace-pre-line pt-2 '>{seater}</h1>
                     <Link href="/shop" className='font-bold'><Button text='Shop Now' /></Link>
