@@ -34,6 +34,7 @@ export default function RootLayout({
           <CartProvider> {/* Wrap the app in CartProvider */}
           <Header />
           {children}
+          
           <Footer />
           {/* <CartDetails /> Render the client component here */}
         </CartProvider>

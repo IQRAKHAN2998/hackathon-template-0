@@ -37,7 +37,7 @@ export default function CartPage() {
 
       <div>
         <ul >
-          <li className="flex flex-row space-x-32  bg-[#fbebb5]">
+          <li className="flex flex-row sm:mx-auto sm:max-w-4xl space-x-24 bg-[#fbebb5]">
             <h2>product</h2>
             <h2>price</h2>
             <h2>quantity</h2>

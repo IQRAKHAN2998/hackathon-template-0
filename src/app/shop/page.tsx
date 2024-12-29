@@ -21,7 +21,7 @@ const Product = async () => {
       }`)
     console.log(data)
     return (
-        <div className='flex flex-col items-center justify-center sm:grid-cols-1 mx-auto max-w-screen-2xl space-x-6 space-y-7   md:grid-cols-2 lg:grid-cols-4'>
+        <div className='flex flex-col  items-center justify-center  mx-auto max-w-screen-2xl space-x-6 space-y-7 sm:grid  md:grid-cols-2 lg:grid-cols-4'>
             {
                 data.map((item:IProducts)=>{
                     return(
