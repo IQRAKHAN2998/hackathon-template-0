@@ -8,27 +8,27 @@ interface productStyle {
     description: string,
     rupees: string
 }
-const product: productStyle[] = [
+const product1: productStyle[] = [
     {
-        id: "1o",
+        id: "1o11",
         image: "/Trenton modular.png",
         description: "treton moduler Sofa Three",
         rupees: "25000.00"
     },
     {
-        id: "20",
+        id: "2011",
         image: "/Granitedining.png",
         description: "Granite dining table with dining chair",
         rupees: "25000.00"
     },
     {
-        id: "30",
+        id: "3011",
         image: "/Outdoorbar.png",
         description: "Outdoor bar table and stool",
         rupees: "25000.00"
     },
     {
-        id: "40",
+        id: "4011",
         image: "/Plainconsole.png",
         description: "Plain console with teak mirror",
         rupees: "25000.00"
@@ -37,7 +37,7 @@ const product: productStyle[] = [
 ]
 
 
-const Products = () => {
+const Products1 = () => {
     return (
         <section>
             <div className=' flex flex-col space-y-5 justify-center items-center  h-64'>
@@ -46,7 +46,7 @@ const Products = () => {
             </div>
             <div className='grid mt-10 place-items-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-auto'>
                 {
-                    product.map((item) =>
+                    product1.map((item) =>
                     (
                         <CartStyle key="id"
                             image={item.image}
@@ -64,5 +64,5 @@ const Products = () => {
         </section>
     )
 }
-export default Products
+export default Products1
 

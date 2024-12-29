@@ -22,11 +22,11 @@ const Footer = () => {
         {/* Links Section */}
         <div className="flex flex-col sm:flex-col items-center">
           <h2 className="text-[#9F9F9F] font-medium mb-4">Links</h2>
-          <div className="font-bold space-y-4 flex flex-col items-center sm:items-start">
-            <Link href="/">Home</Link>
-            <Link href="/shop">Shop</Link>
-            <Link href="/about">About</Link>
-            <Link href="/contact">Contact</Link>
+          <div className=" font-bold space-y-4 flex flex-col items-center sm:items-start">
+            <Link href="/" className='hover:text-blue-400'>Home</Link>
+            <Link href="/shop" className='hover:text-blue-400'>Shop</Link>
+            <Link href="/about" className='hover:text-blue-400'>About</Link>
+            <Link href="/contact" className='hover:text-blue-400'>Contact</Link>
           </div>
         </div>
 

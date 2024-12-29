@@ -25,27 +25,27 @@ interface Blog {
 const shortimg: Ishortimg[] =
     [
         {
-            id: "11",
+            id: "110",
             simage: "/Rectangle 69 (1).png",
             description: "Going all-in with millennial design"
         },
         {
-            id: "12",
+            id: "120",
             simage: "/Rectangle 69 (2).png",
             description: "Exploring new ways of decorating"
         },
         {
-            id: "13",
+            id: "130",
             simage: "/Rectangle 69 (3).png",
             description: "Handmade pieces that took time to make"
         },
         {
-            id: "14",
+            id: "140",
             simage: "/Rectangle 69 (4).png",
             description: "Modern home in Milan"
         },
         {
-            id: "15",
+            id: "150",
             simage: "/Rectangle 69.png",
             description: "Colorful office redesign"
         },
@@ -55,18 +55,18 @@ const shortimg: Ishortimg[] =
 
 const blog: Blog[] = [
     {
-        id: "16",
+        id: "160",
         Image: "/Rectangle 14.png",
         Description: "Going all-in with millennial design",
 
     },
     {
-        id: "17",
+        id: "170",
         Image: "/Rectangle 15.png",
         Description: "Going all-in with millennial design",
 
     }, {
-        id: "18",
+        id: "180",
         Image: "/Rectangle 14.png",
         Description: "Going all-in with millennial design",
 
@@ -85,7 +85,7 @@ const Blog = () => {
                 <div className='flex flex-col py-10  '>
 
                     {blog.map((item) => (
-                        <div key="id" className="blog-item py-5">
+                        <div key={item.id} className="blog-item py-5">
                             <Image src={item.Image} alt={item.Description} width={750} height={200} />
                             <h2 className='font-bold mt-5'>{item.Description}</h2>
                             <p className='whitespace-pre-line space-y-1 mt-5'>{para}</p>
@@ -126,7 +126,7 @@ const Blog = () => {
                                 {
                                     shortimg.map((item) => {
                                         return (
-                                            <div key="id" className='flex justify-center items-center space-x-5'>
+                                            <div key={item.id} className='flex justify-center items-center space-x-5'>
                                                 <Image src={item.simage} alt="sortimg" width={80} height={80} className=' my-10'></Image>
                                                 <h2>{item.description}</h2>
 

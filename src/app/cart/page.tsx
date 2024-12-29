@@ -1,58 +1,92 @@
-import React from 'react'
-import { Headersection } from '../layout/headersection'
-import Image from 'next/image'
-import { Trash2 } from 'lucide-react'
+"use client";
 
-const Cart = () => {
-    return (
-        <>
-            <Headersection text="Cart" tittle="Cart" />
-            <div className='flex flex-col sm:flex-row max-w-screen-2xl items:center justify-center sm:justify-around'>
+import Image from "next/image";
+import { useCart } from "../context/CartContext";
+import { urlFor } from "@/sanity/lib/image";
+import { Trash2 } from "lucide-react";
+import { Headersection } from "../layout/headersection";
+import { useState } from "react";
 
-                <div className=' sm:w-full mt-5'>
-                    {/* leftside */}
-                    <div className='bg-[#FFF9E5] flex justify-around text-xl font-semibold gap-3 max-w-screen-full'>
-                        <h2>Product</h2>
-                        <h2>Price</h2>
-                        <h2>Quantity</h2>
-                        <h2>Sub Total</h2>
-                    </div>
-                    <div className='mt-16 ml-10 flex gap-5 sm:space-x-32'>
-                        <div className='flex gap-4'>
-                            <Image className='bg-[#FFF9E5]' src="/Asgaard sofa 1.png" alt="asgard sofa" width={80} height={50}></Image>
-                            <h2 className='mt-5 text-[#9F9F9F]'>Asgaard Sofa</h2>
-                        </div>
-                        <div className='flex justify-around sm:gap-32'>
-                            <h2 className='mt-5 px-14 text-[#9F9F9F]'>Rs. 250,000,00</h2>
-                            <h2 className='border rounded-lg border-black text-lg px-4'>1</h2>
-                            <div className='space-x-5 flex'>
-                                <h2 className='mt-5 hidden sm:block px-14 font-bold'>Rs. 250,000,00</h2>
-                                <Trash2 className='text-[#FBEBB9] text-xl hidden sm:block' />
-                            </div>
-                        </div>
 
-                    </div>
 
+export default function CartPage() {
+  const { cart, removeFromCart } = useCart();
+
+
+  const [quantity, setQuantity] = useState<{ [key: string]: number }>({});  // Track quantity for each product
+
+  const handleQuantityChange = (productId: string, change: number) => {
+    setQuantity((prevQuantity) => ({
+      ...prevQuantity,
+      [productId]: prevQuantity[productId] ? prevQuantity[productId] + change : 1,
+    }));
+  };
+
+  const getSubtotal = (price: string, productId: string) => {
+    const numericPrice = parseFloat(price.replace(/,/g, "")); // Price ko number me convert karte hain (commas ko remove kar ke)
+    if (isNaN(numericPrice)) return 0; // Agar price invalid ho, to 0 return karo
+    return numericPrice * (quantity[productId] || 1); // Quantity ke mutabiq subtotal calculate karo
+  };
+
+
+
+
+  return (
+    <div>
+      <Headersection text="Cart" tittle='Cart' />
+
+      <div>
+        <ul >
+          <li className="flex flex-row space-x-32  bg-[#fbebb5]">
+            <h2>product</h2>
+            <h2>price</h2>
+            <h2>quantity</h2>
+            <h2>subTotal</h2>
+          </li>
+        </ul>
+      </div>
+      <div className="mt-11 sm:max-w-4xl sm:mx-auto  flex flex-row  ">
+        {cart.length === 0 ? (
+          <p>Your cart is empty.</p>
+        ) : (
+          <ul className="space-y-4  ">
+            {cart.map((product) => (
+              <li key={product.id} className="flex flex-row ">
+                <span className="flex flex-col ">
+                  <Image
+                    src={urlFor(product.image).url()}
+                    alt={product.name}
+                    width={20}
+                    height={20}
+                    className="w-20 h-20 object-cover bg-[#fbebb5]"
+                  />
+                  <h3 className="font-bold">{product.name}</h3>
+                </span>
+                <div className="flex space-x-24 justify-center items-center">
+
+
+                  <p className="text-slate-500">{product.price}</p>
+                  <div className="font-semibold text-base space-x-2">
+                    <button onClick={() => handleQuantityChange(product.id, -1)}>-</button>
+                    <span>{quantity[product.id] || 1}</span>
+                    <button onClick={() => handleQuantityChange(product.id, 1)}>+</button>
+                  </div>
+                  <p className="text-slate-500">
+                    {isNaN(Number(product.price.replace(/,/g, "")))
+                      ? "Invalid Data"
+                      : getSubtotal(product.price, product.id)}
+                  </p>
+
+
+
+                  <button onClick={() => removeFromCart(product.id)} className=""><Trash2 /></button>
                 </div>
-                <div className='bg-[#FFF9E5] mt-10 py-7 sm:px-24 text-center h-auto max-w-screen-md mx-auto text-xl font-semibold'>
-                    {/* rightside */}
-                    <h2 className='text-2xl font-bold'>Cart Totals</h2>
-                    <div className='flex justify-center gap-7 py-7 items-center'>
-                        <h2 className='text-black font-bold'>Sub Total</h2>
-                        <h2 className='  text-[#9F9F9F]'> Rs.250,000.00</h2>
-                    </div>
-                    <div className='flex justify-center gap-7 py-7 items-center'>
-                        <h2 className='text-black font-bold'>Total</h2>
-                        <h2 className='  text-[#B88E2F]'> Rs.250,000.00</h2>
-                    </div>
-                    <div > <button className='border border-black py-4 px-12 rounded-md font-semibold '>Check Out</button></div>
-
-
-                </div>
-            </div>
-
-
-        </>
-    )
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
 }
-export default Cart
+

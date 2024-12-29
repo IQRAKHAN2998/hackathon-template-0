@@ -22,14 +22,14 @@ const myaccount = () => {
             className=' block rounded-md mt-1 border py-3  border-gray-400' />
 
           <label
-            htmlFor="password"
+            htmlFor="pasword"
             className="block text-sm  text-gray-700 font-semibold focus:ring-indigo-500 focus:border-indigo-500"
           >
             Password
           </label>
           <input
             type="password"
-            id="password"
+            id="pasword"
 
             className="mt-1 block  rounded-md border py-3 border-gray-400  focus:ring-indigo-500 focus:border-indigo-500"
           />

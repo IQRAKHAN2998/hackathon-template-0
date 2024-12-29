@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import { Heart, Menu, Search, ShoppingCart, UserRoundX } from "lucide-react"
 import {
@@ -7,14 +8,17 @@ import {
     SheetHeader,
     SheetTrigger,
 } from "@/components/ui/sheet"
+import { useCart } from "../context/CartContext";
+
 
 export default function Header() {
+    const { cartCount } = useCart(); // Use cartCount from context
 
     return (
-        <main>
+        <main className="sticky top-0 z-40">
 
-            <div className="flex justify-center  font-bold text-2lg bg-[#fbebb5] text-black p-4  space-x-14 sm:space-x-60 sticky top-0">
-                <ul className=" hidden md:block">
+            <div className="flex justify-center   font-bold text-2lg bg-[#fbebb5] text-black p-4  space-x-14 sm:space-x-60  ">
+                <ul className=" hidden md:block  ">
                     <li className="space-x-5 ">
                         <Link href="/">Home</Link>
                         <Link href="/shop">Shop</Link>
@@ -50,8 +54,28 @@ export default function Header() {
                     <Link href="/myaccount"><UserRoundX /></Link>
                     <Link href="/checkout"><Search /></Link>
                     <Link href=""><Heart /></Link>
-                    <Link href="/cart"><ShoppingCart /></Link>
-
+                
+ {/* Cart Icon */}
+ <div style={{ position: "relative", display: "inline-block" }}>
+ <Link href="/cart"><ShoppingCart /></Link>
+         
+          {cartCount > 0 && (
+            <span
+              style={{
+                position: "absolute",
+                top: "-5px",
+                right: "-10px",
+                backgroundColor: "red",
+                color: "white",
+                borderRadius: "50%",
+                padding: "5px 10px",
+                fontSize: "12px",
+              }}
+            >
+              {cartCount}
+            </span>
+          )}
+        </div>
                 </div>
             </div>
         </main>

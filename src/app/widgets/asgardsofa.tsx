@@ -6,14 +6,14 @@ import Link from 'next/link'
 
 
 const blogdesign = [{
-    id: 1,
+    id: 100,
     image: "/Rectangle 13.png",
 }, {
-    id: 2,
+    id: 200,
     image: "/Rectangle 14.png"
 },
 {
-    id: 3,
+    id: 300,
     image: "/Rectangle 15.png"
 }]
 
