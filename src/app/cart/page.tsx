@@ -44,6 +44,7 @@ export default function CartPage() {
             <h2>subTotal</h2>
           </li>
         </ul>
+        </div>
 
         <div className="mt-11 sm:max-w-4xl sm:mx-auto  flex flex-row  ">
           {cart.length === 0 ? (
@@ -66,7 +67,7 @@ export default function CartPage() {
 
 
                     <p className="text-slate-500">{product.price}</p>
-                    <div className="font-semibold text-base space-x-2">
+                    <div className="font-semibold text-base sm:space-x-2 ">
                       <button onClick={() => handleQuantityChange(product.id, -1)}>-</button>
                       <span>{quantity[product.id] || 1}</span>
                       <button onClick={() => handleQuantityChange(product.id, 1)}>+</button>
@@ -87,7 +88,6 @@ export default function CartPage() {
           )}
         </div>
       </div>
-    </div>
   );
 }
 

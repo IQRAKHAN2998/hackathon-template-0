@@ -34,11 +34,11 @@ export const AsgardSofa = () => {
                 <h2 className='text-4xl font-semibold font-sans py-6'>Our Blogs</h2>
                 <h2 className='text-[#9F9F9F]'>Find a bright ideal to suit your taste with our great selection</h2>
             </div>
-            <div className='flex justify-center items-center mt-10 flex-col space-x-10 max-w-screen-full sm:flex-row '>
+            <div className=' justify-center items-center mt-10  space-x-10 max-w-screen-full  '>
                 {
                     blogdesign.map((item) => {
                         return (
-                            <div key="id" className='space-y-5 text-center mt-14'>
+                            <div key="id" className='space-y-5 text-center mt-14 flex flex-col justify-center items-center'>
                                 <Image src={item.image} alt='blogimg' width={300} height={300}></Image>
                                 <h2>Going all-in with millennial design</h2>
                                 <Button text="Read more" />

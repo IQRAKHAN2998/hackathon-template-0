@@ -36,7 +36,7 @@ const Home = () => {
                         <h2 className='font-bold text-xl sm:text-2xl '>Side_table</h2>
                         <Button text="view More" />
                     </div>
-                   
+
                     <Image src="/cloudsofa.png" alt='sidetable' width={400} height={400}></Image>
                 </div>
             </div>

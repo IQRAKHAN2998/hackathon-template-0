@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "./layout/header";
 import Footer from "./layout/footer";
 import { CartProvider } from "./context/CartContext";
+import { CarFront } from "lucide-react";
+import CartIcon from "@/components/carticon";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,7 +36,7 @@ export default function RootLayout({
           <CartProvider> {/* Wrap the app in CartProvider */}
           <Header />
           {children}
-          
+          <CartIcon/>
           <Footer />
           {/* <CartDetails /> Render the client component here */}
         </CartProvider>
