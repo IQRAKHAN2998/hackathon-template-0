@@ -23,7 +23,7 @@ const Home = () => {
                 {/* left side */}
                 <div className='flex items-center'>
                     <div className=' sm:mt-36 sm:ml-48  '>
-                        <h2 className='font-bold text-lg sm:text-2xl '>Side_table</h2>
+                        <h2 className='font-bold text-xl sm:text-2xl '>Side_table</h2>
                         <Button text="view More" />
                     </div>
                     <Image src="/sidetable 1.png" alt='sidetable' width={400} height={400} ></Image>

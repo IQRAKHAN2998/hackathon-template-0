@@ -4,7 +4,6 @@ import "./globals.css";
 import Header from "./layout/header";
 import Footer from "./layout/footer";
 import { CartProvider } from "./context/CartContext";
-import { CarFront } from "lucide-react";
 import CartIcon from "@/components/carticon";
 
 const geistSans = localFont({
