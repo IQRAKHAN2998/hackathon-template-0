@@ -38,7 +38,7 @@ const Product = async () => {
                             }
                             <h2 className='font-bold text-xl'>{item.name}</h2>
                             <h3 className='font-semisemibold text-xl text-slate-500'>${item.price}</h3>
-                            </Link>
+                            </Link>npm run dev
                         </div>
                     )
                 })

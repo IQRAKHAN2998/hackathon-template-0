@@ -12,12 +12,12 @@ const CartIcon = () => {
           <div className="relative inline-block" >
         {/* Cart Icon */ }
 
-    <Link href="/cart" ><ShoppingCart className="hover:scale-110 transition-transform duration-200 h-16 w-16 text-gray-800 md:h-8 md:w-8"/></Link>
+    <Link href="/cart" ><ShoppingCart className="hover:scale-110 sm:hidden transition-transform duration-200 h-16 w-16 text-gray-800 md:h-8 md:w-8"/></Link>
 
 {
     cartCount > 0 && (
         <span
-           className="absolute -top-2 -right-2 bg-red-600 text-white text-sm rounded-full px-2 py-1 shadow-lg">
+           className="absolute -top-2 -right-2  bg-red-600 text-white text-sm rounded-full px-2 py-1 shadow-lg">
             {cartCount}
         </span>
     )

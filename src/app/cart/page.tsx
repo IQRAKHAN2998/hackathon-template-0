@@ -5,89 +5,127 @@ import { useCart } from "../context/CartContext";
 import { urlFor } from "@/sanity/lib/image";
 import { Trash2 } from "lucide-react";
 import { Headersection } from "../layout/headersection";
-import { useState } from "react";
-
-
+import Link from "next/link";
 
 export default function CartPage() {
-  const { cart, removeFromCart } = useCart();
-
-
-  const [quantity, setQuantity] = useState<{ [key: string]: number }>({});  // Track quantity for each product
+  const { cart, removeFromCart, getGrandTotal, quantities, setQuantities } = useCart();
 
   const handleQuantityChange = (productId: string, change: number) => {
-    setQuantity((prevQuantity) => ({
-      ...prevQuantity,
-      [productId]: prevQuantity[productId] ? prevQuantity[productId] + change : 1,
-    }));
+    setQuantities((prevQuantities) => {
+      const newQuantity = prevQuantities[productId] ? prevQuantities[productId] + change : 1;
+      const updatedQuantity = newQuantity > 0 ? newQuantity : 1;
+
+      return {
+        ...prevQuantities,
+        [productId]: updatedQuantity,  // Update the quantity
+      };
+    });
   };
 
   const getSubtotal = (price: string, productId: string) => {
-    const numericPrice = parseFloat(price.replace(/,/g, "")); // Price ko number me convert karte hain (commas ko remove kar ke)
-    if (isNaN(numericPrice)) return 0; // Agar price invalid ho, to 0 return karo
-    return numericPrice * (quantity[productId] || 1); // Quantity ke mutabiq subtotal calculate karo
+    const numericPrice = parseFloat(price.replace(/,/g, ""));
+    if (isNaN(numericPrice)) return 0;
+    return numericPrice * (quantities[productId] || 1); // Subtotal for this product
   };
 
-
-
-
   return (
-    
     <div>
-      <Headersection text="Cart" tittle='Cart' />
-
-      <div className="">
-        <ul >
-          <li className="flex flex-row space-x-16 justify-center items-center  bg-[#fbebb5]">
-            <h2>product</h2>
-            <h2>price</h2>
-            <h2>quantity</h2>
-            <h2>subTotal</h2>
+      <Headersection text="Cart" tittle="Cart" />
+      <div className="mt-11 sm:max-w-6xl mx-auto px-4">
+        {/* Table Headers */}
+        <ul>
+          <li className="grid grid-cols-4 bg-[#fbebb5] p-4 rounded-t text-center font-semibold">
+            <h2>Product</h2>
+            <h2>Price</h2>
+            <h2>Quantity</h2>
+            <h2>Subtotal</h2>
           </li>
         </ul>
-      </div>
 
-      <div className="mt-11 sm:max-w-6xl sm:mx-auto  flex flex-row justify-center items-center ">
         {cart.length === 0 ? (
-          <p>Your cart is empty.</p>
+          <p className="text-center text-lg font-semibold mt-6">Your cart is empty.</p>
         ) : (
-          <ul className="space-y-4 space-x-0 max-w-screen-sm  ">
+          <ul className="space-y-6 mt-5">
             {cart.map((product) => (
-              <li key={product.id} className="flex flex-row ">
-                <span className="flex flex-col justify-center items-center mx-auto sm:mx-20">
+              <li
+                key={product.id}
+                className="grid grid-cols-4 items-center border-b pb-4 gap-4 text-center"
+              >
+                {/* Product Image and Name */}
+                <div className="flex flex-col items-center">
                   <Image
                     src={urlFor(product.image).url()}
                     alt={product.name}
-                    width={20}
-                    height={20}
+                    width={80}
+                    height={80}
                     className="w-20 h-20 object-cover bg-[#fbebb5]"
                   />
-                  <h3 className="font-bold">{product.name}</h3>
-                </span>
-                <div className="flex sm:space-x-10 space-x-10 justify-center items-center">
+                  <h3 className="font-bold mt-2">{product.name}</h3>
+                </div>
 
+                {/* Price */}
+                <p className="text-slate-500">${product.price}</p>
 
-                  <p className="text-slate-500">{product.price}</p>
-                  <div className="font-semibold text-base sm:space-x-2 ">
-                    <button onClick={() => handleQuantityChange(product.id, -1)}>-</button>
-                    <span>{quantity[product.id] || 1}</span>
-                    <button onClick={() => handleQuantityChange(product.id, 1)}>+</button>
-                  </div>
+                {/* Quantity */}
+                <div className="flex items-center justify-center space-x-2">
+                  <button
+                    onClick={() => handleQuantityChange(product.id, -1)}
+                    className="px-2 py-1 bg-gray-200 rounded"
+                  >
+                    -
+                  </button>
+                  <span className="font-semibold">{quantities[product.id] || 1}</span>
+                  <button
+                    onClick={() => handleQuantityChange(product.id, 1)}
+                    className="px-2 py-1 bg-gray-200 rounded"
+                  >
+                    +
+                  </button>
+                </div>
+
+                {/* Subtotal */}
+                <div className="flex flex-col items-center">
                   <p className="text-slate-500">
                     {isNaN(Number(product.price.replace(/,/g, "")))
                       ? "Invalid Data"
                       : getSubtotal(product.price, product.id)}
                   </p>
-
-
-
-                  <button onClick={() => removeFromCart(product.id)} className=""><Trash2 /></button>
+                  <button
+                    onClick={() => removeFromCart(product.id)}
+                    className="text-red-500 hover:text-red-700 mt-2"
+                  >
+                    <Trash2 />
+                  </button>
                 </div>
               </li>
             ))}
           </ul>
         )}
       </div>
+
+
+
+      <div className="bg-[#fbebb5] p-4 rounded-lg shadow-xl w-full sm:w-80 mx-auto mt-4 flex flex-col justify-center items-center">
+        <h1 className="text-center font-semibold text-xl my-5">Cart Totals</h1>
+        <span>
+          <ul className="flex justify-around space-x-10 my-3">
+            <li>
+              <h2 className="text-xl font-semibold">SubTotal</h2>
+              <h2 className="text-xl font-semibold">Total</h2>
+            </li>
+            <li>
+              <h2 className="text-lg text-gray-600">Rs.{getGrandTotal()}</h2>
+              <h2 className="text-2xl text-[#B88E2F]">Rs.{getGrandTotal()}</h2>
+            </li>
+          </ul>
+        </span>
+
+        <Link href="/checkout">
+          <button className="text-xl my-5 border-2 border-[#B88E2F] py-2 px-4 rounded-lg hover:bg-[#B88E2F] hover:text-white transition duration-300">Check Out</button></Link>
+      </div>
+
+
+
     </div>
   );
 }

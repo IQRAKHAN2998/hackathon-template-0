@@ -53,7 +53,7 @@ export default function Header() {
                 <div className="flex space-x-4 sm:space-x-8">
                     <Link href="/myaccount"><UserRoundX /></Link>
                     <Link href="/checkout"><Search /></Link>
-                    <Link href=""><Heart /></Link>
+                    <Link href="/whishlist"><Heart /></Link>
                 
  {/* Cart Icon */}
  <div style={{ position: "relative", display: "inline-block" }}>
@@ -69,7 +69,7 @@ export default function Header() {
                 color: "white",
                 borderRadius: "50%",
                 padding: "5px 10px",
-                fontSize: "12px",
+                fontSize: "10px",
               }}
             >
               {cartCount}
