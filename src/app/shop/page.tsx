@@ -7,12 +7,16 @@ import Image from 'next/image';
 
 
 interface IProducts {
-    _id:string,
-    name: string;
-    imagePath: string;
-    price: string;
-    discountPercentage:string;
-    tags:string
+  _id: string,
+  name: string;
+  imagePath: string;
+  price: string;
+  discountPercentage: string;
+  tags: string,
+  isFeaturedProduct: boolean,
+  stockLevel: number,
+  category: string
+
 }
 
 const Product = async () => {
@@ -23,22 +27,25 @@ const Product = async () => {
       price,
       discountPercentage,
       tags,
-      imagePath
+      imagePath,
+      isFeaturedProduct,
+      stockLevel,
+      category
     }`
   )
   if (!query) {
     <h2>product not available</h2>
-}
+  }
   return (
-    
+
 
     <div className='flex flex-col items-center justify-center mx-auto max-w-screen-2xl space-x-6 space-y-7 sm:grid md:grid-cols-2 lg:grid-cols-4'>
-    
+
       {query.map((item: IProducts) => {
         return (
           <div key={item._id} className='items-center justify-center hover:scale-110 max-w-screen-sm'>
             <Link href={`/prodynamic/${item._id}`}>
-            <p>{item.tags}</p>
+           
               <Image
                 src={item.imagePath ? item.imagePath : '/default-image.jpg'}
                 alt="product image"
@@ -46,20 +53,25 @@ const Product = async () => {
                 height={200}
               />
             </Link>
+            
             <h2 className='font-bold text-xl'>{item.name}</h2>
-           <span className='flex space-x-5'>
-           <h3 className='font-semibold text-xl text-red-900'>${item.price}</h3>
-           <h3 className='font-semibold text-xl text-slate-500 line-through'>${item.discountPercentage}</h3>
-           </span>
-          
+            <span className='flex space-x-5'>
+              <h3 className='font-semibold text-xl text-red-900'>${item.price}</h3>
+              <h3 className='font-semibold text-xl text-slate-500 line-through'>${item.discountPercentage}</h3>
+              
+            </span>
+            
+             
+              
+
           </div>
         );
       })}
-      </div>
-   
+    </div>
 
-    
+
+
   );
 }
-  export default Product;
-  
+export default Product;
+

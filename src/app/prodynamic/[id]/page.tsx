@@ -22,6 +22,10 @@ const IdPage = async ({ params }: { params: Promise<Iparams> }) => {
               name ,
               imagePath,
               price,
+              discountPercentage,
+              isFeaturedProduct,
+              stockLevel,
+              category
           }`,{id})
    
 
@@ -52,8 +56,17 @@ const IdPage = async ({ params }: { params: Promise<Iparams> }) => {
                     
                 
                 <span className='flex-col text-2xl space-y-5 space-x-2'>
+
                     <h2 className='font-semibold font-serif '>{res.name}</h2>
-                    <h2 className='text-slate-500'>{res.price}</h2>
+                    <span className='flex space-x-5'>
+                    <p>InStock:{res.stockLevel}</p>
+                    <p>{res.category}</p>
+                    </span>
+                   <span className='flex space-x-5'>
+                   <h2 className='text-red-700 text-2xl font-bold'>${res.price}</h2>
+                    <h2 className='font-semibold text-xl text-slate-500 line-through'>${res.discountPercentage}</h2>
+
+                   </span>
                     <p className='text-base'>Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound.
 
                     </p>
