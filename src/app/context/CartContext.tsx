@@ -15,7 +15,7 @@ export type Product = {
   id: string;
   name: string;
   price: string; // Price as string with commas
-  image: string;
+  imagePath: string;
 }
 
 interface CartContextType {
@@ -82,10 +82,12 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const getGrandTotal = (): number => {
     return cart.reduce((total, product) => {
       const quantity = quantities[product.id] || 1;  // Get quantity for each product
-      const numericPrice = parseFloat(product.price.replace(/,/g, "")); // Remove commas and parse to number
+      const priceString = product.price.toString(); // Convert price to string (if not already)
+      const numericPrice = parseFloat(priceString.replace(/,/g, "")); // Remove commas and parse to number
       return isNaN(numericPrice) ? total : total + numericPrice * quantity; // Add valid price to total
     }, 0);
   };
+  
 
   return (
     <CartContext.Provider

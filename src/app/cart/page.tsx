@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import { useCart } from "../context/CartContext";
-import { urlFor } from "@/sanity/lib/image";
+// import { urlFor } from "@/sanity/lib/image";
 import { Trash2 } from "lucide-react";
 import { Headersection } from "../layout/headersection";
 import Link from "next/link";
+
 
 export default function CartPage() {
   const { cart, removeFromCart, getGrandTotal, quantities, setQuantities } = useCart();
@@ -22,11 +23,13 @@ export default function CartPage() {
     });
   };
 
-  const getSubtotal = (price: string, productId: string) => {
-    const numericPrice = parseFloat(price.replace(/,/g, ""));
+  const getSubtotal = (price: string | number, productId: string) => {
+    const priceString = price.toString();  // Ensure the price is a string
+    const numericPrice = parseFloat(priceString.replace(/,/g, ""));
     if (isNaN(numericPrice)) return 0;
     return numericPrice * (quantities[productId] || 1); // Subtotal for this product
   };
+
 
   return (
     <div>
@@ -53,13 +56,20 @@ export default function CartPage() {
               >
                 {/* Product Image and Name */}
                 <div className="flex flex-col items-center">
-                  <Image
-                    src={urlFor(product.image).url()}
-                    alt={product.name}
-                    width={80}
-                    height={80}
-                    className="w-20 h-20 object-cover bg-[#fbebb5]"
-                  />
+                  {/* // If imagePath is directly a URL (not a reference object) */}
+
+
+                  
+<Image
+  src={product.imagePath}
+  alt={product.name || 'product image'}
+  width={400}
+  height={400}
+/>
+
+
+
+
                   <h3 className="font-bold mt-2">{product.name}</h3>
                 </div>
 
@@ -86,7 +96,7 @@ export default function CartPage() {
                 {/* Subtotal */}
                 <div className="flex flex-col items-center">
                   <p className="text-slate-500">
-                    {isNaN(Number(product.price.replace(/,/g, "")))
+                    {isNaN(Number(product.price?.toString().replace(/,/g, "")))
                       ? "Invalid Data"
                       : getSubtotal(product.price, product.id)}
                   </p>

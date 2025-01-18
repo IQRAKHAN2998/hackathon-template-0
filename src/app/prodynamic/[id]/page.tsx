@@ -1,6 +1,5 @@
 import AddToCartButton from '@/components/addtocartbutton';
 import { client } from '@/sanity/lib/client'
-import { urlFor } from '@/sanity/lib/image';
 import { ChevronRight, Circle } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,23 +7,23 @@ import Link from 'next/link';
 interface Iparams {
     id: string
 }
-interface IProducts {
-    id: string,
-    name: string;
-    image: string;
-    price: string;
-}
+// interface IProducts {
+//     id: string,
+//     name: string;
+//     image: string;
+//     price: string;
+// }
 const IdPage = async ({ params }: { params: Promise<Iparams> }) => {
 
 
     const { id } = await params
-    const data = await client.fetch(`*[_type == "product"]{
+    const res = await client.fetch(`*[_type == "product" && _id == $id][0]{
               id,
               name ,
-              image,
+              imagePath,
               price,
-          }`)
-    const res = data.find((item: IProducts) => item.id === id)
+          }`,{id})
+   
 
     if (!res) {
         <h2>product not available</h2>
@@ -43,15 +42,15 @@ const IdPage = async ({ params }: { params: Promise<Iparams> }) => {
             </div>
             <div className='flex space-x-5 my-6 flex-col sm:flex-row '>
 
-                {
-                    res.image && (
-                        <Image src={urlFor(res.image).url()}
+                
+                    
+                        <Image src={res.imagePath}
                             alt={res.name || 'product image'}
-                            width={1500}
+                            width={400}
                             height={400}
                             className='bg-[#fbebb5] ' />
-                    )
-                }
+                    
+                
                 <span className='flex-col text-2xl space-y-5 space-x-2'>
                     <h2 className='font-semibold font-serif '>{res.name}</h2>
                     <h2 className='text-slate-500'>{res.price}</h2>

@@ -34,7 +34,7 @@ export default function WishlistPage() {
               <li key={product.id} className="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
                 <div className="flex items-center">
                   <Image
-                    src={urlFor(product.image).url()}
+                    src={urlFor(product.imagePath).url()}
                     alt={product.name}
                     width={50}
                     height={50}
