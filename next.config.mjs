@@ -3,7 +3,14 @@ const nextConfig = {
     images :{
         remotePatterns :[
             {
-                hostname:'cdn.sanity.io'
+                hostname:"images.unsplash.com"
+            },{
+                
+                    hostname: "plus.unsplash.com", // Add this line
+                  
+            },
+            {
+               hostname: "next-ecommerce-template-4.vercel.app"
             }
         ]
     }

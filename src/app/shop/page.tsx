@@ -43,6 +43,7 @@ const Product = async () => {
                 src={item.imagePath ? item.imagePath : '/default-image.jpg'}
                 alt="product image"
                 width="200"
+                height={200}
               />
             </Link>
             <h2 className='font-bold text-xl'>{item.name}</h2>
