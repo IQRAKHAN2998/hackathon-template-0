@@ -9,7 +9,7 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet"
 import { useCart } from "../context/CartContext";
-import { useWishlist } from "../usewhishlisthook/page";
+import { useWishlist } from "../../hooks/usewishlist";
 import { useEffect, useState } from "react";
 
 

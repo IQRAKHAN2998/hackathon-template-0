@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { Heart } from 'lucide-react';
-import { useWishlist } from '../app/usewhishlisthook/page';  // Import custom hook
+import { useWishlist } from '../hooks/usewishlist';  // Import custom hook
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/ReactToastify.css";
 

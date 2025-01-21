@@ -1,4 +1,4 @@
-"use client";
+// src/hooks/useWishlist.ts
 import { useState, useEffect } from "react";
 
 interface IProducts {
