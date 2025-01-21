@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Heart } from "lucide-react"; // Heart icon
-import { useWishlist } from "../app/usewhishlisthook/page"; // Custom hook for wishlist
+import { useWishlist } from "@/hooks/usewishlist"; // Custom hook for wishlist
 
 const WishlistButton = () => {
   const { wishlist } = useWishlist(); // Fetch wishlist from custom hook

@@ -1,5 +1,6 @@
 // src/app/whishlist/page.tsx
-"use client";  // Ensure this is included for client-side rendering
+"use client"
+  // Ensure this is included for client-side rendering
 import { useWishlist } from "@/hooks/usewishlist"; // Correct path to your hook
 
 const WishlistPage = () => {
