@@ -3,7 +3,7 @@
 import { useWishlist } from "@/hooks/usewishlist"; // Correct path to your hook
 
 const WishlistPage = () => {
-  const { wishlist, addToWishlist, removeFromWishlist, checkIfInWishlist } = useWishlist();
+  const { wishlist, removeFromWishlist } = useWishlist();
 
   return (
     <div>
