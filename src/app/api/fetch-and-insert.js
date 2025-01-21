@@ -1,5 +1,5 @@
 import axios from 'axios';
-import client from '../../../sanityClient';
+import client from '../../sanityClient';
 
 
 export default async function handler(req, res) {
@@ -31,3 +31,4 @@ export default async function handler(req, res) {
     res.status(500).json({ error: 'Failed to fetch or insert data' });
   }
 }
+
