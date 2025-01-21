@@ -55,12 +55,7 @@ interface IProducts {
 
 // export default AddToWishlistButton;
 
-interface ComponentProduct {
-  id: string;
-  name: string;
-  imagePath: string;
-  price: string;
-}
+
 interface AddToWishlistButtonProps {
   product: IProducts;
 }
