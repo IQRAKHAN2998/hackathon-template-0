@@ -9,10 +9,22 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet"
 import { useCart } from "../context/CartContext";
+import { useWishlist } from "../usewhishlisthook/page";
+import { useEffect, useState } from "react";
 
 
 export default function Header() {
     const { cartCount } = useCart(); // Use cartCount from context
+    const { wishlist } = useWishlist(); // Fetch wishlist from custom hook
+    const [wishlistCount, setWishlistCount] = useState(0);
+  
+    useEffect(() => {
+      // Update wishlist count whenever the wishlist changes
+      if (wishlist) {
+        setWishlistCount(wishlist.length);
+      }
+    }, [wishlist]); // Effect will run whenever wishlist updates
+  
 
     return (
         <main className="sticky top-0 z-40">
@@ -25,6 +37,7 @@ export default function Header() {
                         <Link href="/about">About</Link>
                         <Link href="/contact">Contact</Link>
                         <Link href="/blog">Blog</Link>
+
 
                     </li>
                 </ul>
@@ -53,29 +66,49 @@ export default function Header() {
                 <div className="flex space-x-4 sm:space-x-8">
                     <Link href="/myaccount"><UserRoundX /></Link>
                     <Link href="/checkout"><Search /></Link>
-                    <Link href="/whishlist"><Heart /></Link>
-                
- {/* Cart Icon */}
- <div style={{ position: "relative", display: "inline-block" }}>
- <Link href="/cart"><ShoppingCart /></Link>
-         
-          {cartCount > 0 && (
-            <span
-              style={{
-                position: "absolute",
-                top: "-5px",
-                right: "-10px",
-                backgroundColor: "red",
-                color: "white",
-                borderRadius: "50%",
-                padding: "5px 10px",
-                fontSize: "10px",
-              }}
-            >
-              {cartCount}
-            </span>
-          )}
-        </div>
+                    <div style={{ position: "relative", display: "inline-block" }}>
+                        <Link href="/whishlist"><Heart/></Link>
+                            {wishlistCount > 0 && (
+                               <span
+                               style={{
+                                   position: "absolute",
+                                   top: "-5px",
+                                   right: "-10px",
+                                   backgroundColor: "red",
+                                   color: "white",
+                                   borderRadius: "50%",
+                                   padding: "5px 10px",
+                                   fontSize: "10px",
+                               }}
+                           >
+                               {wishlistCount}
+                           </span>
+                            )}
+                        
+                    </div>
+
+
+                    {/* Cart Icon */}
+                    <div style={{ position: "relative", display: "inline-block" }}>
+                        <Link href="/cart"><ShoppingCart /></Link>
+
+                        {cartCount > 0 && (
+                            <span
+                                style={{
+                                    position: "absolute",
+                                    top: "-5px",
+                                    right: "-10px",
+                                    backgroundColor: "red",
+                                    color: "white",
+                                    borderRadius: "50%",
+                                    padding: "5px 10px",
+                                    fontSize: "10px",
+                                }}
+                            >
+                                {cartCount}
+                            </span>
+                        )}
+                    </div>
                 </div>
             </div>
         </main>

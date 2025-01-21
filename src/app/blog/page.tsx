@@ -2,6 +2,7 @@ import React from 'react'
 import { Headersection } from '../layout/headersection'
 import Button from '../shared/button'
 import Image from 'next/image'
+import { client } from '@/sanity/lib/client'
 const para = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
  incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer malesuada nunc 
  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
@@ -22,6 +23,17 @@ interface Blog {
     Description: string,
     simage?: string
 }
+interface IProducts {
+    _id: string,
+    name: string,
+    imagePath: string,
+    price: string,
+    discountPercentage: string,
+    tags: string,
+    isFeaturedProduct: boolean,
+    stockLevel: number,
+    category: string
+  }
 const shortimg: Ishortimg[] =
     [
         {
@@ -74,9 +86,15 @@ const blog: Blog[] = [
 
 ]
 
-const Blog = () => {
+const Blog = async () => {
+    const res = await client.fetch(`*[_type == "product"]{
+    category,
+    stockLevel
+  }`,[0])
+  console.log(res)
     return (
-        <><div>
+       <>
+       <div>
             <Headersection text="Blog" tittle="Blog" />
         </div >
             <div className='flex justify-around sm:mx-40 flex-col mt-10  sm:flex-row space-x-5 '>
@@ -84,7 +102,7 @@ const Blog = () => {
 
                 <div className='flex flex-col py-10  '>
 
-                    {blog.map((item) => (
+                    {blog.map((item :Blog) => (
                         <div key={item.id} className="blog-item py-5">
                             <Image src={item.Image} alt={item.Description} width={750} height={200} />
                             <h2 className='font-bold mt-5'>{item.Description}</h2>
@@ -98,24 +116,33 @@ const Blog = () => {
 
                 <div className=' space-y-14 justify-items-center'>
                     {/* right side */}
-                    <input type="text" className='py-3 px-9 border-2 border-slate-800 rounded-md' />
+                    
                     <h2 className='font-bold text-4xl'>Categories</h2>
                     <ul className='flex space-x-7 gap-10 text-xl text-slate-400'>
                         <li className='space-y-10'>
-                            <h3>Crafts</h3>
-                            <h3>Design</h3>
-                            <h3>Interior</h3>
-                            <h3>Wood</h3>
-                            <h3>Handmade</h3>
+                          
+                            {
+                                
+                                res.map((item: IProducts) => {
+                                    return(
+                                        <h1 key={item._id}> {item.category}</h1> 
+                                    )
+                                  
+                                })
+                            }
 
                         </li>
 
                         <li className='space-y-10'>
-                            <h3>2</h3>
-                            <h3>8</h3>
-                            <h3>7</h3>
-                            <h3>1</h3>
-                            <h3>6</h3>
+                        {
+                                
+                                res.map((item:IProducts ) => {
+                                    return(
+                                        <h1 key={item._id}> {item.stockLevel}</h1> 
+                                    )
+                                  
+                                })
+                            }
 
                         </li>
                     </ul>
@@ -141,9 +168,12 @@ const Blog = () => {
                 </div>
 
             </div>
+        </ >
+        
 
 
-        </>
+
+
     )
 }
 export default Blog

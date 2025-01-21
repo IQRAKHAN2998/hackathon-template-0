@@ -1,5 +1,5 @@
 import axios from 'axios';
-import client from '../../sanityClient';
+import client from '../../../sanityClient';
 
 
 export default async function handler(req, res) {

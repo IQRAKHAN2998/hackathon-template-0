@@ -1,6 +1,7 @@
 // pages/contact.js
 import { Clock2, MapPin, Phone } from "lucide-react";
 import { Headersection } from "../layout/headersection";
+import ContactForm from "@/components/contact-form";
 
 
 export default function Contact() {
@@ -38,7 +39,7 @@ export default function Contact() {
             <span className="text-xl"><Phone /></span>
             <div>
               <h3 className="text-lg font-semibold">Phone</h3>
-              <p className="text-gray-600">Mobile: (+84) 546-6789</p>
+              <p className="text-gray-600">Mobile: (+92) 3230207681</p>
               <p className="text-gray-600">Hotline: (+84) 456-6789</p>
             </div>
           </div>
@@ -55,67 +56,7 @@ export default function Contact() {
 
         {/* Right Side - Contact Form */}
         <div>
-          <form className="bg-white shadow-md rounded-lg p-6 space-y-4">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 ">
-                Your Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                placeholder="your name"
-                className="mt-1 block w-full border py-3 rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Email Address
-              </label>
-              <input
-                type="email"
-                id="email"
-                placeholder="Email@123.com"
-                className="mt-1 block w-full rounded-md border py-3 border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="subject"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Subject
-              </label>
-              <input
-                type="text"
-                id="subject"
-                placeholder="This is an optional"
-                className="mt-1 block w-full rounded-md border py-3 border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="message"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Message
-              </label>
-              <textarea
-                id="message"
-                placeholder="Hi! I'd like to ask about"
-                className="mt-1 block w-full rounded-md border py-3 border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                rows={4}
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="px-5 text-black py-2 border  rounded-md font-semibold hover:bg-indigo-700"
-            >
-              Submit
-            </button>
-          </form>
+         <ContactForm/>
         </div>
       </div>
 
@@ -124,3 +65,5 @@ export default function Contact() {
     </>
   );
 }
+
+

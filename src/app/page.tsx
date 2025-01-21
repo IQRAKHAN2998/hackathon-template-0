@@ -7,6 +7,7 @@ import { AsgardSofa } from './widgets/asgardsofa'
 const HomePage = () => {
   return (
     <main>
+      
       <Home/>
       <Products/>
       <AsgardSofa/>

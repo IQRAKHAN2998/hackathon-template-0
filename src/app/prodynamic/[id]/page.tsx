@@ -1,4 +1,5 @@
 import AddToCartButton from '@/components/addtocartbutton';
+import WhishlistButton from '@/components/whishlistbutton';
 import { client } from '@/sanity/lib/client'
 import { ChevronRight, Circle } from 'lucide-react';
 import Image from 'next/image';
@@ -89,6 +90,7 @@ const IdPage = async ({ params }: { params: Promise<Iparams> }) => {
 
                     <span >
                         <AddToCartButton product={res} /> {/* Client component */}
+                        <WhishlistButton product={res} />
                     </span>
                 </span>
 

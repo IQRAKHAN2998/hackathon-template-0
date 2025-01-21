@@ -34,7 +34,7 @@ export const AsgardSofa = () => {
                 <h2 className='text-4xl font-semibold font-sans py-6'>Our Blogs</h2>
                 <h2 className='text-[#9F9F9F]'>Find a bright ideal to suit your taste with our great selection</h2>
             </div>
-            <div className=' justify-center items-center mt-10  space-x-10 max-w-screen-full  '>
+            <div className=' justify-center items-center mt-10  space-x-10 max-w-screen-full flex flex-col sm:flex-row  '>
                 {
                     blogdesign.map((item) => {
                         return (

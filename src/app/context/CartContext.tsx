@@ -64,7 +64,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   // Cart se product remove karna aur local storage ko update karna
   const removeFromCart = (id: string) => {
-    const updatedCart = cart.filter((item) => item.id !== id);
+    const updatedCart = cart.filter((item) => item?.id !== id);
     setCart(updatedCart);
 
     const updatedQuantities = { ...quantities };
@@ -81,9 +81,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   // Grand total calculation function
   const getGrandTotal = (): number => {
     return cart.reduce((total, product) => {
-      const quantity = quantities[product.id] || 1;  // Get quantity for each product
-      const priceString = product.price.toString(); // Convert price to string (if not already)
-      const numericPrice = parseFloat(priceString.replace(/,/g, "")); // Remove commas and parse to number
+      const quantity = quantities[product?.id] || 1;  // Get quantity for each product
+      const priceString = product?.price.toString(); // Convert price to string (if not already)
+      const numericPrice = parseFloat(priceString?.replace(/,/g, "")); // Remove commas and parse to number
       return isNaN(numericPrice) ? total : total + numericPrice * quantity; // Add valid price to total
     }, 0);
   };
