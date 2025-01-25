@@ -16,16 +16,7 @@ import { useEffect, useState } from "react";
 export default function Header() {
     const { cartCount } = useCart(); // Use cartCount from context
     const { wishlist } = useWishlist(); // Fetch wishlist from custom hook
-    const [wishlistCount, setWishlistCount] = useState(0);
-  
-    useEffect(() => {
-      // Update wishlist count whenever the wishlist changes
-      if (wishlist) {
-        setWishlistCount(wishlist.length);
-      }
-    }, [wishlist]); // Effect will run whenever wishlist updates
-  
-
+   
     return (
         <main className="sticky top-0 z-40">
 
@@ -68,7 +59,7 @@ export default function Header() {
                     <Link href="/checkout"><Search /></Link>
                     <div style={{ position: "relative", display: "inline-block" }}>
                         <Link href="/whishlist"><Heart/></Link>
-                            {wishlistCount > 0 && (
+                            {wishlist.length > 0 && (
                                <span
                                style={{
                                    position: "absolute",
@@ -81,7 +72,7 @@ export default function Header() {
                                    fontSize: "10px",
                                }}
                            >
-                               {wishlistCount}
+                               {wishlist.length}
                            </span>
                             )}
                         

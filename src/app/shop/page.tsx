@@ -55,13 +55,15 @@ const Product = async () => {
                     height={200}
                     className="object-cover"
                   />
-                </Link>
+                
                 <h2 className='font-bold text-xl text-center'>{item.name}</h2>
                 <span className='flex space-x-5 justify-center'>
                   <h3 className='font-semibold text-xl text-red-900'>${item.price}</h3>
                   <h3 className='font-semibold text-xl text-slate-500 line-through'>${item.discountPercentage}</h3>
                 </span>
+                </Link>
               </div>
+
             )
           })}
         </div>
