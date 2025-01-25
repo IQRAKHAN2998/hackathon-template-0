@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/sheet"
 import { useCart } from "../context/CartContext";
 import { useWishlist } from "../../hooks/usewishlist";
-import { useEffect, useState } from "react";
+
 
 
 export default function Header() {
