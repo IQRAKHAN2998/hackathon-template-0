@@ -13,10 +13,11 @@ import { useWishlist } from "../../hooks/usewishlist";
 
 
 
+
 export default function Header() {
     const { cartCount } = useCart(); // Use cartCount from context
     const { wishlist } = useWishlist(); // Fetch wishlist from custom hook
-   
+
     return (
         <main className="sticky top-0 z-40">
 
@@ -54,28 +55,31 @@ export default function Header() {
                         </SheetHeader>
                     </SheetContent>
                 </Sheet>
+
                 <div className="flex space-x-4 sm:space-x-8">
+
                     <Link href="/myaccount"><UserRoundX /></Link>
+
                     <Link href="/checkout"><Search /></Link>
                     <div style={{ position: "relative", display: "inline-block" }}>
-                        <Link href="/whishlist"><Heart/></Link>
-                            {wishlist.length > 0 && (
-                               <span
-                               style={{
-                                   position: "absolute",
-                                   top: "-5px",
-                                   right: "-10px",
-                                   backgroundColor: "red",
-                                   color: "white",
-                                   borderRadius: "50%",
-                                   padding: "5px 10px",
-                                   fontSize: "10px",
-                               }}
-                           >
-                               {wishlist.length}
-                           </span>
-                            )}
-                        
+                        <Link href="/whishlist"><Heart /></Link>
+                        {wishlist.length > 0 && (
+                            <span
+                                style={{
+                                    position: "absolute",
+                                    top: "-5px",
+                                    right: "-10px",
+                                    backgroundColor: "red",
+                                    color: "white",
+                                    borderRadius: "50%",
+                                    padding: "5px 10px",
+                                    fontSize: "10px",
+                                }}
+                            >
+                                {wishlist.length}
+                            </span>
+                        )}
+
                     </div>
 
 

@@ -1,7 +1,7 @@
 // schemas/contact.js
 import {Rule} from "@sanity/types"
 
-export default {
+export const contactform = {
     name: 'contactform', // Name of the schema
     title: 'Contact', // Title for the schema
     type: 'document', // Type of the schema is document

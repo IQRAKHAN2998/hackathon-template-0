@@ -12,7 +12,7 @@ interface CartContextType {
 import React, { createContext, useState, useContext, ReactNode, useEffect } from "react";
 
 export type Product = {
-  id: string;
+  _id: string;
   name: string;
   price: string; // Price as string with commas
   imagePath: string;
@@ -55,7 +55,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
     setQuantities((prev) => ({
       ...prev,
-      [product.id]: (prev[product.id] || 0) + 1,
+      [product._id]: (prev[product._id] || 0) + 1,
     }));
 
     localStorage.setItem("cart", JSON.stringify(updatedCart));
@@ -64,7 +64,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   // Cart se product remove karna aur local storage ko update karna
   const removeFromCart = (id: string) => {
-    const updatedCart = cart.filter((item) => item?.id !== id);
+    const updatedCart = cart.filter((item) => item?._id !== id);
     setCart(updatedCart);
 
     const updatedQuantities = { ...quantities };
@@ -81,7 +81,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   // Grand total calculation function
   const getGrandTotal = (): number => {
     return cart.reduce((total, product) => {
-      const quantity = quantities[product?.id] || 1;  // Get quantity for each product
+      const quantity = quantities[product?._id] || 1;  // Get quantity for each product
       const priceString = product?.price.toString(); // Convert price to string (if not already)
       const numericPrice = parseFloat(priceString?.replace(/,/g, "")); // Remove commas and parse to number
       return isNaN(numericPrice) ? total : total + numericPrice * quantity; // Add valid price to total

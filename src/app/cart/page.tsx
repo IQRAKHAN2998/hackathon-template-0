@@ -53,7 +53,7 @@ export default function CartPage() {
           <ul className="space-y-6 mt-5">
             {cart.map((product, index) => (
               <li
-                key={product?.id || index}
+                key={product?._id || index}
                 className="grid grid-cols-4 items-center border-b pb-4 gap-4 text-center"
               >
                 {/* Product Image and Name */}
@@ -84,14 +84,14 @@ export default function CartPage() {
                 {/* Quantity */}
                 <div className="flex items-center justify-center space-x-2">
                   <button
-                    onClick={() => handleQuantityChange(product?.id, -1)}
+                    onClick={() => handleQuantityChange(product?._id, -1)}
                     className="px-2 py-1 bg-gray-200 rounded"
                   >
                     -
                   </button>
-                  <span className="font-semibold">{quantities[product?.id] || 1}</span>
+                  <span className="font-semibold">{quantities[product?._id] || 1}</span>
                   <button
-                    onClick={() => handleQuantityChange(product?.id, 1)}
+                    onClick={() => handleQuantityChange(product?._id, 1)}
                     className="px-2 py-1 bg-gray-200 rounded"
                   >
                     +
@@ -103,10 +103,10 @@ export default function CartPage() {
                   <p className="text-slate-500">
                     {isNaN(Number(product?.price?.toString().replace(/,/g, "")))
                       ? "Invalid Data"
-                      : getSubtotal(product?.price, product?.id)}
+                      : getSubtotal(product?.price, product?._id)}
                   </p>
                   <button
-                    onClick={() => removeFromCart(product?.id)}
+                    onClick={() => removeFromCart(product?._id)}
                     className="text-red-500 hover:text-red-700 mt-2"
                   >
                     <Trash2 />

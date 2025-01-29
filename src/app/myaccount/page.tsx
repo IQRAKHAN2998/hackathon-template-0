@@ -1,3 +1,33 @@
+// import React from 'react'
+// import {
+
+  // SignInButton,
+  // SignedIn,
+  // SignedOut,
+//   UserButton
+// } from '@clerk/nextjs'
+// const Account = () => {
+//   return (
+//     <div>
+//       <h2>Account</h2>
+      {/* <SignedOut>
+        <SignInButton />
+      </SignedOut> */}
+      {/* <SignedIn > */}
+        // <UserButton />
+      {/* </SignedIn> */}
+//     </div>
+//   )
+// }
+
+
+// export default Account
+
+
+
+
+
+
 import React from 'react'
 import { Headersection } from '../layout/headersection'
 const myaccount = () => {

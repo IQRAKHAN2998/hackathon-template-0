@@ -5,6 +5,8 @@ import Header from "./layout/header";
 import Footer from "./layout/footer";
 import { CartProvider } from "./context/CartContext";
 import CartIcon from "@/components/carticon";
+// import { ClerkProvider } from "@clerk/nextjs";
+// import { Suspense } from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,6 +30,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    
+      // <ClerkProvider 
+      // publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+      // >
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -41,5 +47,6 @@ export default function RootLayout({
         </CartProvider>
       </body>
     </html>
+    // </ClerkProvider>
   );
 }

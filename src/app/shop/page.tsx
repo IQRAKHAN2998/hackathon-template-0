@@ -4,7 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Headersection } from '../layout/headersection'
-import Category from '../categories'
+import Category from '../../components/categories'
 
 interface IProducts {
   _id: string,
