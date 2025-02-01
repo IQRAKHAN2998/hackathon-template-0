@@ -5,6 +5,7 @@ import Header from "./layout/header";
 import Footer from "./layout/footer";
 import { CartProvider } from "./context/CartContext";
 import CartIcon from "@/components/carticon";
+import dynamic from "next/dynamic";
 // import { ClerkProvider } from "@clerk/nextjs";
 // import { Suspense } from "react";
 
@@ -25,6 +26,12 @@ export const metadata :Metadata = {
     icon: "/favicon.ico",  // Ensure this is correct
   },
 };
+const DynamicClerkProvider = dynamic(() =>
+  import("@clerk/nextjs").then((mod) => mod.ClerkProvider) as Promise<
+    React.ComponentType<{ children: React.ReactNode }>
+  >
+);
+
 
 export default function RootLayout({
   children,
@@ -33,9 +40,9 @@ export default function RootLayout({
 }>) {
   return (
     
-      // <ClerkProvider 
+      <DynamicClerkProvider 
       // publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
-      // >
+      >
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -49,6 +56,6 @@ export default function RootLayout({
         </CartProvider>
       </body>
     </html>
-    // </ClerkProvider>
+    </DynamicClerkProvider>
   );
 }

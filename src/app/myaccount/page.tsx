@@ -1,27 +1,24 @@
-//  import React from 'react'
-//  import {
+// import dynamic from "next/dynamic";
+// import React from "react";
+// import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
-//    SignInButton,
-//    SignedIn,
-//    SignedOut,
-//    UserButton
-//  } from '@clerk/nextjs'
-//  const Account = () => {
-//    return (
-//      <div>
-//        <h2>Account</h2>
-//        <SignedOut>
+
+// const Account = () => {
+//   return (
+//     <div>
+//       <h2>Account</h2>
+//       <SignedOut>
 //         <SignInButton />
-//       </SignedOut> 
-//        <SignedIn > 
-//          <UserButton />
-//       </SignedIn> 
+//       </SignedOut>
+//       <SignedIn>
+//         <UserButton />
+//       </SignedIn>
 //     </div>
-//    )
-//  }
+//   );
+// };
 
+// export default Account;
 
-//  export default Account
 
 
 

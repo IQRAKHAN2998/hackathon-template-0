@@ -1,113 +1,89 @@
-import React from 'react';
-import { Headersection } from '../layout/headersection';
+"use client"; // This directive ensures the component runs only on the client side in a Next.js app.
+// Install @stripe/stripe-js & @stripe/react-stripe-js
+import React, { useState, useEffect } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { createPaymentIntent } from "./action";
+import { Headersection } from "../layout/headersection";
 
-const BillingDetails = () => {
-  
+// Initialize Stripe with the public key from environment variables
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
+
+export default function CheckoutPage() {
+  // State to store the client secret, which is required for processing the payment
+  const [clientSecret, setClientSecret] = useState<string | null>(null);
+
+  useEffect(() => {
+    // When the component mounts, request a new PaymentIntent from the server
+    createPaymentIntent()
+      .then((res) => {
+          setClientSecret(res.clientSecret); // Save the client secret to state
+      })
+  }, []);
+  console.log(clientSecret);
+
+  // While waiting for the client secret, show a loading message
+  if (!clientSecret) {
+    return <div>Loading...</div>;
+  }
+
   return (
-   <> <Headersection text="Checkout" tittle='Check Out'/>
-    <div className="max-w-screen-xl mx-auto py-10 px-5">
-      <h1 className="text-2xl font-bold mb-6">Billing details</h1>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-        {/* Left Form Section */}
-        <div className="lg:col-span-2">
-          <form className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <input
-              type="text"
-              placeholder="First Name"
-              className="border border-gray-300 rounded-md px-3 py-2 w-full"
-            />
-            <input
-              type="text"
-              placeholder="Last Name"
-              className="border border-gray-300 rounded-md px-3 py-2 w-full"
-            />
-            <input
-              type="text"
-              placeholder="Company Name (Optional)"
-              className="border border-gray-300 rounded-md px-3 py-2 w-full sm:col-span-2"
-            />
-            <select className="border border-gray-300 rounded-md px-3 py-2 w-full sm:col-span-2">
-              <option>Country / Region</option>
-              <option>Sri Lanka</option>
-              <option>Pakistan</option>
-              <option>India</option>
-            </select>
-            <input
-              type="text"
-              placeholder="Street Address"
-              className="border border-gray-300 rounded-md px-3 py-2 w-full sm:col-span-2"
-            />
-            <input
-              type="text"
-              placeholder="Town / City"
-              className="border border-gray-300 rounded-md px-3 py-2 w-full"
-            />
-            <select className="border border-gray-300 rounded-md px-3 py-2 w-full">
-              <option>Province</option>
-              <option>Western Province</option>
-              <option>Southern Province</option>
-            </select>
-            <input
-              type="text"
-              placeholder="ZIP Code"
-              className="border border-gray-300 rounded-md px-3 py-2 w-full"
-            />
-            <input
-              type="text"
-              placeholder="Phone"
-              className="border border-gray-300 rounded-md px-3 py-2 w-full"
-            />
-            <input
-              type="email"
-              placeholder="Email Address"
-              className="border border-gray-300 rounded-md px-3 py-2 w-full sm:col-span-2"
-            />
-            <textarea
-              placeholder="Additional Information"
-              className="border border-gray-300 rounded-md px-3 py-2 w-full sm:col-span-2"
-              rows={3}
-            ></textarea>
-          </form>
-        </div>
-
-        {/* Right side */}
-        <div className="bg-gray-50 border border-gray-300 rounded-lg p-5">
-          <h2 className="text-lg font-bold mb-4">Product</h2>
-          <div className="flex justify-between mb-2">
-            <span>Asgaard sofa × 1</span>
-            <span>Rs. 250,000.00</span>
-          </div>
-          <div className="flex justify-between mb-2">
-            <span>Subtotal</span>
-            <span>Rs. 250,000.00</span>
-          </div>
-          <div className="flex justify-between font-bold text-lg mb-4">
-            <span>Total</span>
-            <span>Rs. 250,000.00</span>
-          </div>
-          <div className="flex flex-col gap-2 mb-4">
-            <label className="flex items-center gap-2">
-              <input type="radio" name="payment" />
-              <span>Direct Bank Transfer</span>
-            </label>
-            <label className="flex items-center gap-2">
-              <input type="radio" name="payment" />
-              <span>Cash On Delivery</span>
-            </label>
-          </div>
-          <p className="text-sm text-gray-600 mb-4">
-            Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.
-          </p>
-          
-          <button  className="w-full py-3 bg-white border border-gray-300 rounded-md text-center font-bold hover:bg-gray-100">
-            Place order
-          </button>
-        </div>
-      </div>
+    <>
+     <Headersection text="Checkout" tittle='Check Out'/>
+    <div style={{ maxWidth: 400, margin: "0 auto" }}>
+      
+      {/* Wrap the payment form inside the Elements provider with Stripe instance and client secret */}
+      <Elements stripe={stripePromise} 
+      options={{ clientSecret }}>
+        <PaymentForm />
+      </Elements>
     </div>
     </>
   );
-};
+}
 
-export default BillingDetails;
+// Component that handles the payment form
+function PaymentForm() {
+  const stripe = useStripe(); // Hook to access Stripe methods
+  const elements = useElements(); // Hook to access Stripe elements
+  const [isProcessing, setIsProcessing] = useState(false); // State to manage loading state while processing
+  const [errorMessage, setErrorMessage] = useState<string | null>(null); // State to show error messages
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent page refresh when submitting the form
+
+    if (!stripe || !elements) return; // Ensure Stripe is loaded before proceeding
+
+    setIsProcessing(true); // Indicate that the payment is being processed
+
+    // Attempt to confirm the payment
+    const { error } = await stripe.confirmPayment({
+      elements,
+      redirect: "if_required", // Redirect if required by the payment method
+    });
+
+    if (error) {
+      setErrorMessage(error.message || "An unknown error occurred"); // Display error message if payment fails
+      setIsProcessing(false);
+    } else {
+      // Payment was successful
+      setErrorMessage(null);
+      alert("Payment successful!"); // Notify the user
+      setIsProcessing(false);
+      // You can optionally redirect the user to a success page here
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      {/* Stripe's payment element (handles input fields for card details, etc.) */}
+      <PaymentElement />
+      <button className="justify-items-center bg-green-300 mt-4" type="submit" 
+      disabled={!stripe || isProcessing}>
+        {isProcessing ? "Processing..." : "Pay Now"} {/* Show dynamic button text */}
+      </button>
+      {/* Display any error messages if they occur */}
+      {errorMessage && <div style={{ color: "red", marginTop: 8 }}>{errorMessage}</div>}
+    </form>
+  );
+}
