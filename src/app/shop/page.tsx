@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { Headersection } from '../layout/headersection'
 import Category from '../../components/categories'
 
-interface IProducts {
+ export interface IProducts {
   _id: string,
   name: string,
   imagePath: string,

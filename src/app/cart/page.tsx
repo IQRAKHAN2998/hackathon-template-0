@@ -138,10 +138,10 @@ export default function CartPage() {
         {/* <Link href="/checkout">
           <button className="text-xl my-5 border-2 border-[#B88E2F] py-2 px-4 rounded-lg hover:bg-[#B88E2F] hover:text-white transition duration-300">Check Out</button></Link>
            */}
-          <Link href="/shippoData">
+          <Link href="/checkout">
           <button
            className="text-xl my-5 border-2 border-[#B88E2F] py-2 px-4 rounded-lg hover:bg-[#B88E2F] hover:text-white transition duration-300">
-            Tracking
+            Proceed to payment
             </button>
             </Link>
            

@@ -3,18 +3,37 @@ import axios from "axios";
 
 const API_KEY = process.env.SHIPPO_API_KEY;
 
+interface Parcel {
+  length: number;
+  width: number;
+  height: number;
+  distance_unit: string;
+  weight: number;
+  mass_unit: string;
+}
+
 export async function POST(request: Request) {
   try {
     const { addressFrom, addressTo, parcels, orderId, totalAmount } = await request.json();
 
     console.log("Request body:", { addressFrom, addressTo, parcels, orderId, totalAmount });
 
+    // Ensure parcels have the correct type
+    const parcelData = parcels.map((parcel: Parcel) => ({
+      length: parcel.length,
+      width: parcel.width,
+      height: parcel.height,
+      distance_unit: parcel.distance_unit,
+      weight: parcel.weight,
+      mass_unit: parcel.mass_unit,
+    }));
+
     const response = await axios.post(
       "https://api.goshippo.com/shipments/",
       {
         address_from: addressFrom,
         address_to: addressTo,
-        parcels,
+        parcels: parcelData,
         async: false,
       },
       {
@@ -78,6 +97,7 @@ export async function POST(request: Request) {
     }
   }
 }
+
 
 // import { NextApiRequest, NextApiResponse } from "next";
 // import axios from "axios"; // Importing AxiosError for better type inference

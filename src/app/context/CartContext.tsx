@@ -1,6 +1,16 @@
  "use client";
 
-
+ export interface IProducts {
+  _id: string,
+  name: string,
+  imagePath: string,
+  price: string,
+  discountPercentage: string,
+  tags: string,
+  isFeaturedProduct: boolean,
+  stockLevel: number,
+  category: string
+}
 interface CartContextType {
   cartCount: number;
   cart: Product[];
@@ -16,6 +26,11 @@ export type Product = {
   name: string;
   price: string; // Price as string with commas
   imagePath: string;
+  discountPercentage: string,
+  tags: string,
+  isFeaturedProduct: boolean,
+  stockLevel: number,
+  category: string
 }
 
 interface CartContextType {

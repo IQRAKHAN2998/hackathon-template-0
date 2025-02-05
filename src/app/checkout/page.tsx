@@ -1,89 +1,111 @@
-"use client"; // This directive ensures the component runs only on the client side in a Next.js app.
-// Install @stripe/stripe-js & @stripe/react-stripe-js
-import React, { useState, useEffect } from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
-import { createPaymentIntent } from "./action";
-import { Headersection } from "../layout/headersection";
+"use client";
 
-// Initialize Stripe with the public key from environment variables
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
+import { useState } from "react";
+import { useCart } from "../context/CartContext";
+import Checkout from "@/components/Checkout";
 
 export default function CheckoutPage() {
-  // State to store the client secret, which is required for processing the payment
-  const [clientSecret, setClientSecret] = useState<string | null>(null);
+  const { cart, getGrandTotal } = useCart();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    address: "",
+  });
 
-  useEffect(() => {
-    // When the component mounts, request a new PaymentIntent from the server
-    createPaymentIntent()
-      .then((res) => {
-          setClientSecret(res.clientSecret); // Save the client secret to state
-      })
-  }, []);
-  console.log(clientSecret);
-
-  // While waiting for the client secret, show a loading message
-  if (!clientSecret) {
-    return <div>Loading...</div>;
-  }
-
-  return (
-    <>
-     <Headersection text="Checkout" tittle='Check Out'/>
-    <div style={{ maxWidth: 400, margin: "0 auto" }}>
-      
-      {/* Wrap the payment form inside the Elements provider with Stripe instance and client secret */}
-      <Elements stripe={stripePromise} 
-      options={{ clientSecret }}>
-        <PaymentForm />
-      </Elements>
-    </div>
-    </>
-  );
-}
-
-// Component that handles the payment form
-function PaymentForm() {
-  const stripe = useStripe(); // Hook to access Stripe methods
-  const elements = useElements(); // Hook to access Stripe elements
-  const [isProcessing, setIsProcessing] = useState(false); // State to manage loading state while processing
-  const [errorMessage, setErrorMessage] = useState<string | null>(null); // State to show error messages
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent page refresh when submitting the form
+    e.preventDefault();
 
-    if (!stripe || !elements) return; // Ensure Stripe is loaded before proceeding
-
-    setIsProcessing(true); // Indicate that the payment is being processed
-
-    // Attempt to confirm the payment
-    const { error } = await stripe.confirmPayment({
-      elements,
-      redirect: "if_required", // Redirect if required by the payment method
+    const response = await fetch("/api/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        cartItems: cart,
+        totalPrice: getGrandTotal(),
+        customerInfo: {
+          name: formData.name,
+          email: formData.email,
+          address: formData.address,
+        },
+      }),
     });
 
-    if (error) {
-      setErrorMessage(error.message || "An unknown error occurred"); // Display error message if payment fails
-      setIsProcessing(false);
+    const data = await response.json();
+    if (data.orderId) {
+      alert(`Order placed successfully. Order ID: ${data.orderId}`);
     } else {
-      // Payment was successful
-      setErrorMessage(null);
-      alert("Payment successful!"); // Notify the user
-      setIsProcessing(false);
-      // You can optionally redirect the user to a success page here
+      alert("Failed to place order");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {/* Stripe's payment element (handles input fields for card details, etc.) */}
-      <PaymentElement />
-      <button className="justify-items-center bg-green-300 mt-4" type="submit" 
-      disabled={!stripe || isProcessing}>
-        {isProcessing ? "Processing..." : "Pay Now"} {/* Show dynamic button text */}
-      </button>
-      {/* Display any error messages if they occur */}
-      {errorMessage && <div style={{ color: "red", marginTop: 8 }}>{errorMessage}</div>}
-    </form>
+    <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg mt-6">
+      <h1 className="text-3xl font-bold text-center text-gray-800 mb-5">Checkout</h1>
+      
+      {cart.length === 0 ? (
+        <p className="text-center text-lg font-semibold text-gray-600">Your cart is empty.</p>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-4">
+          
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              Your Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              Your Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+              Your Address
+            </label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              value={formData.address}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+            />
+          </div>
+
+          <div className="my-4">
+            <Checkout cartItems={cart} totalPrice={getGrandTotal()} customerInfo={formData} />
+          </div>
+        </form>
+      )}
+    </div>
   );
 }
