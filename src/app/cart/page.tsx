@@ -7,21 +7,27 @@ import { Trash2 } from "lucide-react";
 import { Headersection } from "../layout/headersection";
 import Link from "next/link";
 
+type QuantityState = { [key: string]: number };
 
 export default function CartPage() {
   const { cart, removeFromCart, getGrandTotal, quantities, setQuantities } = useCart();
 
-  const handleQuantityChange = (productId: string, change: number) => {
-    setQuantities((prevQuantities) => {
-      const newQuantity = prevQuantities[productId] ? prevQuantities[productId] + change : 1;
-      const updatedQuantity = newQuantity > 0 ? newQuantity : 1;
 
-      return {
-        ...prevQuantities,
-        [productId]: updatedQuantity,  // Update the quantity
-      };
+  
+  const handleQuantityChange = (productId: string, change: number) => {
+    setQuantities((prevQuantities: QuantityState) => {
+      const updatedQuantities = { ...prevQuantities };
+
+      if (!updatedQuantities[productId]) {
+        updatedQuantities[productId] = 1;
+      }
+
+      updatedQuantities[productId] = Math.max(updatedQuantities[productId] + change, 1);
+      
+      return updatedQuantities;
     });
-  };
+};
+
 
   const getSubtotal = (price: string | number, productId: string) => {
     const priceString = price.toString();  // Ensure the price is a string
